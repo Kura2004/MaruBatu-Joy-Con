@@ -59,7 +59,7 @@ public class MainGameOverManager : MonoBehaviour
         if (loadGameOver) return; // ゲームオーバーが既に実行されていたら処理しない
         var gameState = GameStateManager.Instance;
 
-        if (gameState.AreBothPlayersWinning()||GameTurnManager.Instance.IsGameEnd())
+        if (gameState.AreBothPlayersWinning() || GameTurnManager.Instance.IsGameEnd())
         {
             ExecuteGameOver();
             return;
