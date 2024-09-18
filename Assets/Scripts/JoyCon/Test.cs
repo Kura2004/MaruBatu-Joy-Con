@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 public class Test : MonoBehaviour
 {
+    [SerializeField]
+    TextMeshProUGUI text;
     void Update()
     {
         SwitchControllerAnyKeyDown();
@@ -14,7 +17,12 @@ public class Test : MonoBehaviour
         {
             foreach (SwitchController code in Enum.GetValues(typeof(SwitchController)))
             {
-                if (Input.GetKeyDown((KeyCode)code)) Debug.Log(code);
+                if (Input.GetKeyDown((KeyCode)code))
+                {
+                    Debug.Log(code);
+                    text.text = code.ToString();
+                }
+                
             }
         }
     }
