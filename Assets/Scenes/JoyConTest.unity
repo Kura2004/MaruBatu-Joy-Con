@@ -231,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 99411109}
   - component: {fileID: 99411108}
+  - component: {fileID: 99411110}
   m_Layer: 0
   m_Name: joy-con
   m_TagString: Untagged
@@ -266,6 +267,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &99411110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99411107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405bad29b2b998c408059182c189d9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableIMU: 1
+  EnableLocalize: 1
 --- !u!1 &898669596
 GameObject:
   m_ObjectHideFlags: 0

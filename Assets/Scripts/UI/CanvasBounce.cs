@@ -4,33 +4,42 @@ using DG.Tweening;
 public class CanvasBounce : MonoBehaviour
 {
     [SerializeField] protected RectTransform canvasRectTransform;
-    [SerializeField] protected GameObject canvasObject; // アニメーションをかけるキャンバスのGameObjectを追加
-    [SerializeField] protected float initialDropHeight = 1000f; // キャンバスが落ち始める高さ
-    [SerializeField] protected float groundY = -500f; // 地面のY座標
-    [SerializeField] protected float bounceHeight = 200f; // 初期の弾む高さ
-    [SerializeField] protected int bounceCount = 3; // 弾む回数
-    [SerializeField] protected float initialBounceDuration = 0.5f; // 初期の弾むアニメーションの時間
-    [SerializeField] protected float heightDampingFactor = 0.5f; // 高さの減衰率
-    [SerializeField] protected float durationDampingFactor = 0.7f; // 時間の減衰率
-    [SerializeField] protected float riseDuration = 0.3f; // 上昇アニメーションの時間
-    [SerializeField] protected bool dropOnStart = false; // 最初にDropCanvasを呼び出すかどうかのフラグ
+    [SerializeField] protected GameObject canvasObject;
+    [SerializeField] protected float initialDropHeight = 1000f;
+    [SerializeField] protected float groundY = -500f;
+    [SerializeField] protected float bounceHeight = 200f;
+    [SerializeField] protected int bounceCount = 3;
+    [SerializeField] protected float initialBounceDuration = 0.5f;
+    [SerializeField] protected float heightDampingFactor = 0.5f;
+    [SerializeField] protected float durationDampingFactor = 0.7f;
+    [SerializeField] protected float riseDuration = 0.3f;
+    [SerializeField] protected bool dropOnStart = false;
 
     protected bool isFalling = false;
-    protected bool isBouncingComplete = true; // バウンドアニメーションの完了フラグ
+    protected bool isBouncingComplete = true;
     public static bool isBlocked = false;
+
+    private Joycon leftJoycon;
+    private Joycon rightJoycon;
 
     protected virtual void Start()
     {
+        // Joy-Conの初期化
+        var joycons = JoyconManager.Instance.j;
+        if (joycons.Count >= 2)
+        {
+            leftJoycon = joycons.Find(c => c.isLeft);
+            rightJoycon = joycons.Find(c => !c.isLeft);
+        }
+
         if (dropOnStart)
         {
             InitializeCanvasPosition();
             isFalling = false; // 落下フラグをリセット
             isBouncingComplete = true; // バウンドアニメーションが完了したフラグを設定
         }
-
         else
         {
-            // キャンバスのGameObjectを非アクティブに設定
             canvasObject.SetActive(false);
         }
     }
@@ -45,15 +54,14 @@ public class CanvasBounce : MonoBehaviour
 
     protected virtual void Update()
     {
-        // キャンバスが落下する条件
         if (ShouldDropCanvas())
         {
-            //DropCanvas();
             Debug.Log("キャンバスが落下します");
         }
 
-        // バウンドが完了している場合、かつ Q キーが押されたときにキャンバスを上昇させる
-        if (Input.GetKeyDown(KeyCode.Q) && !isFalling && isBouncingComplete)
+        // Lボタンでキャンバスを上昇させる
+        if (leftJoycon != null && 
+            (leftJoycon.GetButtonDown(Joycon.Button.DPAD_LEFT) || Input.GetKeyDown(KeyCode.Q)) && !isFalling && isBouncingComplete)
         {
             RiseCanvas();
 
@@ -63,10 +71,16 @@ public class CanvasBounce : MonoBehaviour
                 GameStateManager.Instance.StartBoardSetup(1.6f);
                 TimeLimitController.Instance.ResetTimer();
                 TimeLimitController.Instance.StopTimer();
-                dropOnStart = false;
+                Destroy(this);
             }
 
             Debug.Log("キャンバスが上昇します");
+        }
+
+        if (leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_UP))
+        {
+            ScenesLoader.Instance.LoadStartMenu();
+            Debug.Log("スタート画面に戻ります");
         }
     }
 
@@ -137,8 +151,11 @@ public class CanvasBounce : MonoBehaviour
             // 上昇アニメーション
             canvasRectTransform.DOAnchorPosY(initialDropHeight, riseDuration).SetEase(Ease.OutQuad).OnComplete(() =>
             {
+                if (dropOnStart)
+                    Destroy(this);
                 // アニメーション完了後、キャンバスを非アクティブに設定
                 canvasObject.SetActive(false);
+
             });
         }
         isBlocked = false;

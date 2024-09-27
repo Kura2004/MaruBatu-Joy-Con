@@ -28,7 +28,7 @@ public class UIScreenRateAdjuster : MonoBehaviour
     {
         if (AdjustUIOnEnable)
         {
-            LockResolution();
+            //LockResolution();
             AdjustUIForResolution();
         }
     }

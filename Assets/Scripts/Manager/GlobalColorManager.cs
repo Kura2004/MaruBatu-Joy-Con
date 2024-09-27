@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GlobalColorManager : SingletonMonoBehaviour<GlobalColorManager>
 {
-    // メンバ変数をprivateにし、プロパティでアクセスする
     [SerializeField]
     public Color playerColor = new Color(0.5f, 0f, 0.5f);
     [SerializeField]

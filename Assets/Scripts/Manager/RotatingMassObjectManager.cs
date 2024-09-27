@@ -39,6 +39,24 @@ public class RotatingMassObjectManager : MonoBehaviour
         return false; // 全てのオブジェクトがクリックされていない場合
     }
 
+    public bool isSelected = false;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ButtonSelecter"))
+        {
+            isSelected = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ButtonSelecter"))
+        {
+            isSelected = false;
+        }
+    }
+
     public void OnTriggerStay(Collider other)
     {
         // TagがMassのオブジェクトに当たっている場合
@@ -112,7 +130,7 @@ public class RotatingMassObjectManager : MonoBehaviour
                 placeholder.transform.SetParent(transform);
                 massPlaceholders[(MassPoint)i] = placeholder;
 
-                mass[i].GetComponent<ObjectScaler>().IgnoreMouseInput();
+                //mass[i].GetComponent<ObjectScaler>().IgnoreMouseInput();
             }
         }
     }
@@ -124,7 +142,7 @@ public class RotatingMassObjectManager : MonoBehaviour
             if (obj != null)
             {
                 obj.transform.SetParent(null);
-                obj.GetComponent<ObjectScaler>().ResumeMouseInput();
+                //obj.GetComponent<ObjectScaler>().ResumeMouseInput();
             }
         }
 
@@ -144,6 +162,7 @@ public class RotatingMassObjectManager : MonoBehaviour
         GameTurnManager.Instance.SetTurnChange(true);
         GameTurnManager.Instance.AdvanceTurn(); // ターンを進める
         ScenesAudio.SetSe();
+        ObjectStateManager.Instance.MoveFirstObjectUpDown(true);
+        ObjectStateManager.Instance.MoveSecondObjectUpDown(false);
     }
 }
-
