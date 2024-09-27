@@ -45,7 +45,7 @@ public class TimeControllerToggle : MonoBehaviour
     // オブジェクト上でマウスがクリックされた時に呼び出される
     void OnMouseDown()
     {
-        if (TimeLimitController.Instance.isEffectTriggered) { return; }
+        if (TimeLimitController.Instance.isEffectTriggered) return;
         if (GameStateManager.Instance.IsBoardSetupComplete &&
             !GameStateManager.Instance.IsRotating)
         {
