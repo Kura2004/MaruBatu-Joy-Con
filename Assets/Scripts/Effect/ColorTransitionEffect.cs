@@ -49,6 +49,8 @@ public class ColorTransitionEffect : MonoBehaviour
 
     private SpriteRenderer spriteRenderer; // SpriteRendererの参照
 
+    [SerializeField] RotatingMassObjectManager rotating;
+
     private void Awake()
     {
         // SpriteRendererコンポーネントを取得
@@ -124,7 +126,7 @@ public class ColorTransitionEffect : MonoBehaviour
         var turnMana = GameTurnManager.Instance;
         if ((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
             turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup))
-            && !onEffect)
+            && !onEffect && rotating.isSelected)
         {
             onEffect = true;
             if (setOrange)
@@ -136,6 +138,14 @@ public class ColorTransitionEffect : MonoBehaviour
             {
                 StartColorTransition(ColorTag.Cyan);
             }
+        }
+
+        if ((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
+    turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup))
+    && onEffect && !rotating.isSelected)
+        {
+            onEffect = false;
+            StartColorTransition(ColorTag.Gray);
         }
 
         if ((turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) ||

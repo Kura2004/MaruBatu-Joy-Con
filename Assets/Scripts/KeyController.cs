@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,7 +29,7 @@ public class KeyController : MonoBehaviour
         }
 
         // デバッグ用
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             ScenesLoader.Instance.LoadGameOver(0);
             Debug.Log("ゲームオーバー画面に行きます");
@@ -37,7 +38,10 @@ public class KeyController : MonoBehaviour
 
     public void Quit()
     {
-        //UnityEditor.EditorApplication.isPlaying = false;
-        Application.Quit();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+                    UnityEngine.Application.Quit();
+#endif
     }
 }

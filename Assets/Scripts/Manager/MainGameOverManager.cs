@@ -6,7 +6,13 @@ public class MainGameOverManager : MonoBehaviour
     public static bool loadGameOver = false;
 
     private float resetDelay = 0.03f; // ResetBoardSetupを呼び出すまでの遅延時間
+    int GameEndCounter = 0;
 
+    private void OnEnable()
+    {
+        GameEndCounter = 0;
+        loadGameOver = false;
+    }
     // ボードリセットの処理をメソッド化
     private void ExecuteResetBoardSetup()
     {
@@ -51,6 +57,16 @@ public class MainGameOverManager : MonoBehaviour
             ExecuteGameOver();
             return;
         }
+
+        if (GameTurnManager.Instance.IsGameEnd())
+        {
+            GameEndCounter++;
+            if (GameEndCounter == 3)
+            {
+                ExecuteGameOver();
+                return;
+            }
+        }
     }
 
     // 両方が勝利状態の場合、ゲームオーバーを実行
@@ -59,7 +75,7 @@ public class MainGameOverManager : MonoBehaviour
         if (loadGameOver) return; // ゲームオーバーが既に実行されていたら処理しない
         var gameState = GameStateManager.Instance;
 
-        if (gameState.AreBothPlayersWinning() || GameTurnManager.Instance.IsGameEnd())
+        if (gameState.AreBothPlayersWinning())
         {
             ExecuteGameOver();
             return;

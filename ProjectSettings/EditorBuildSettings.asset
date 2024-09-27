@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/JoyConTest.unity
-    guid: 422b2236044b34e42a627fc2ad479e92
-  - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 83900eb3f8b8b624a9afdc771c2b1493
   - enabled: 1

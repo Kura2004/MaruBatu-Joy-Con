@@ -23,7 +23,7 @@ public class VolumeSettings : MonoBehaviour
     /// BGM音量スライダーの値が変更された時の処理
     /// </summary>
     /// <param name="value">新しい音量値</param>
-    private void OnBgmVolumeChanged(float value)
+    public void OnBgmVolumeChanged(float value)
     {
         SoundManager.Instance.SetBgmMasterVolume(value);
     }
@@ -32,7 +32,7 @@ public class VolumeSettings : MonoBehaviour
     /// SE音量スライダーの値が変更された時の処理
     /// </summary>
     /// <param name="value">新しい音量値</param>
-    private void OnSeVolumeChanged(float value)
+    public void OnSeVolumeChanged(float value)
     {
         SoundManager.Instance.SetSeMasterVolume(value);
     }

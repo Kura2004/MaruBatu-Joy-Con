@@ -1,23 +1,20 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class RotatingButtonLeft : MonoBehaviour
 {
     [SerializeField]
-    private RotatingMassObjectManager rotatingManager; // 回転処理を管理するマネージャー
-
+    private RotatingMassObjectManager rotatingManager;
     [SerializeField]
-    private ObjectColorChanger colorChanger; // 色の変更を管理するコンポーネント
+    private ObjectColorChanger colorChanger;
+    [SerializeField]
+    string selecterTag = "Def";
 
-    private bool IsInteractionBlocked()
-    {
-        var turnManager = GameTurnManager.Instance;
-        return CanvasBounce.isBlocked ||
-               turnManager.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) ||
-               turnManager.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) ||
-               TimeControllerToggle.isTimeStopped || !GameStateManager.Instance.IsBoardSetupComplete;
-    }
+    private List<Joycon> joycons;
+    private Joycon leftJoycon;
+    private Joycon rightJoycon;
 
     private void Start()
     {
@@ -25,25 +22,56 @@ public class RotatingButtonLeft : MonoBehaviour
         {
             Debug.LogError("ObjectColorChanger コンポーネントが設定されていません");
         }
+
+        // Joy-Conの初期化
+        joycons = JoyconManager.Instance.j;
+        if (joycons.Count >= 1)
+        {
+            leftJoycon = joycons.Find(c => c.isLeft);
+            rightJoycon = joycons.Find(c => !c.isLeft);
+        }
     }
 
-    private void OnMouseDown()
+    private bool IsInteractionBlocked()
     {
-        if (IsInteractionBlocked() || !rotatingManager.AnyMassClicked())
+        return CanvasBounce.isBlocked ||
+               TimeControllerToggle.isTimeStopped ||
+               !GameStateManager.Instance.IsBoardSetupComplete ||
+               !rotatingManager.AnyMassClicked() ||
+               !rotatingManager.isSelected;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (IsInteractionBlocked() || !other.CompareTag(selecterTag))
         {
-            //ScenesAudio.BlockSe();
             return;
         }
 
-        HandleClickInteraction();
+        // 2PのSLボタンで回転
+        if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) &&
+            rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.SL))
+        {
+            HandleClickInteraction();
+        }
+
+        // 1PのSLボタンで回転
+        if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) &&
+            leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.SL))
+        {
+            HandleClickInteraction();
+        }
+
+        // テスト用
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            HandleClickInteraction();
+        }
     }
 
     private void HandleClickInteraction()
     {
         TimeLimitController.Instance.StopTimer();
-        rotatingManager.StartRotationLeft(); // 左回転を開始
+        rotatingManager.StartRotationLeft();
     }
 }
-
-
-
