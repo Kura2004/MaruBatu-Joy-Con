@@ -53,14 +53,14 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
 
         // 2Pの決定ボタン（Aボタン）でインタラクション
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) &&
-            rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.DPAD_RIGHT))
+            rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.DPAD_UP))
         {
             HandleInteraction();
         }
 
         // 1Pの決定ボタン（Aボタン）でインタラクション
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) &&
-            leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_LEFT))
+            leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_DOWN))
         {
             HandleInteraction();
         }
