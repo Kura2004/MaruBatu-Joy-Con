@@ -61,7 +61,7 @@ public class CanvasBounce : MonoBehaviour
 
         // Lボタンでキャンバスを上昇させる
         if (leftJoycon != null && 
-            (leftJoycon.GetButtonDown(Joycon.Button.DPAD_LEFT) || Input.GetKeyDown(KeyCode.Q)) && !isFalling && isBouncingComplete)
+            (leftJoycon.GetButtonDown(Joycon.Button.DPAD_DOWN) || Input.GetKeyDown(KeyCode.Q)) && !isFalling && isBouncingComplete)
         {
             RiseCanvas();
 
@@ -77,7 +77,7 @@ public class CanvasBounce : MonoBehaviour
             Debug.Log("キャンバスが上昇します");
         }
 
-        if (leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_UP))
+        if (leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_LEFT))
         {
             ScenesLoader.Instance.LoadStartMenu();
             Debug.Log("スタート画面に戻ります");
