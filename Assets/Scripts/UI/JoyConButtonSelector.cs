@@ -22,6 +22,7 @@ public class JoyConButtonSelector : MonoBehaviour
     private Dictionary<int, Vector3> originalScales = new Dictionary<int, Vector3>(); // ボタンの元のローカルスケールを保存
     private List<Button> buttonList = new List<Button>(); // ボタンを格納するリスト
 
+    [SerializeField] VolumeSettings volume;
     private void Start()
     {
         // JoyConのリストを取得
@@ -72,20 +73,57 @@ public class JoyConButtonSelector : MonoBehaviour
 
     private void Update()
     {
-        // 左JoyConが接続されていなければ処理を行わない
-        if (joyconL == null || !canInput)
-            return;
+        if (!canInput) return;
 
         // JoyConのスティック入力を取得
-        Vector2 stickInput = new Vector2(joyconL.GetStick()[1], joyconL.GetStick()[0]);
+        Vector2 stickInput = new Vector2(-joyconL.GetStick()[1], joyconL.GetStick()[0]);
+
+        if (buttonManager.isLocked)
+        {
+            if (joyconL.GetButtonDown(Joycon.Button.DPAD_LEFT))
+            {
+                if (currentIndex >= 0 && currentIndex < buttonList.Count && buttonList[currentIndex] != null)
+                {
+                    buttonList[currentIndex].onClick.Invoke();
+                }
+                StartCooldown(); // クールダウン開始
+            }
+
+
+            // スティックの上下操作でボタンを切り替える
+            if (stickInput.y > 0.7f && volume.onSeVolume)
+            {
+                volume.EnableBgmVolumeControl();
+                ScenesAudio.ClickSe();
+                StartCooldown(); // クールダウン開始
+            }
+            else if (stickInput.y < -0.7f && !volume.onSeVolume)
+            {
+                volume.EnableSeVolumeControl();
+                ScenesAudio.ClickSe();
+                StartCooldown(); // クールダウン開始
+            }
+
+            if (volume != null)
+            {
+                if (!volume.onSeVolume)
+                    volume.AddBgmVolume(stickInput.x * 0.01f);
+
+                else
+                    volume.AddSeVolume(stickInput.x * 0.01f);
+            }
+        }
+
+        if (joyconL == null || buttonManager.isLocked) 
+            return;
 
         // スティックの上下操作でボタンを切り替える
-        if (stickInput.y > 0.1f)
+        if (stickInput.y > 0.5f)
         {
             SelectPreviousButton();
             StartCooldown(); // クールダウン開始
         }
-        else if (stickInput.y < -0.1f)
+        else if (stickInput.y < -0.5f)
         {
             SelectNextButton();
             StartCooldown(); // クールダウン開始
