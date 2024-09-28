@@ -19,7 +19,9 @@ public class ButtonManager : MonoBehaviour
     public List<ButtonData> buttons = new List<ButtonData>();
 
     // ボタンがロックされているかどうかを管理するフラグ
-    private bool isLocked = false;
+    public bool isLocked = false;
+
+    [SerializeField] string specialTag;
 
     void Start()
     {
@@ -55,7 +57,7 @@ public class ButtonManager : MonoBehaviour
         isLocked = true;
         foreach (ButtonData buttonData in buttons)
         {
-            buttonData.button.interactable = false; // ボタンのインタラクションを無効にする
+            buttonData.button.interactable = buttonData.tag == specialTag;
         }
     }
 
