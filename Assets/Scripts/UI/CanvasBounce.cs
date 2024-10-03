@@ -22,6 +22,7 @@ public class CanvasBounce : MonoBehaviour
     private Joycon leftJoycon;
     private Joycon rightJoycon;
 
+    [SerializeField] CountdownText countdown;
     protected virtual void Start()
     {
         // Joy-Con‚Ì‰Šú‰»
@@ -67,11 +68,11 @@ public class CanvasBounce : MonoBehaviour
 
             if (dropOnStart)
             {
-                GameTurnManager.Instance.IsGameStarted = true;
-                GameStateManager.Instance.StartBoardSetup(1.6f);
+                GameStateManager.Instance.StartBoardSetup(countdown.GetTotalDuration());
+                StartCoroutine(countdown.StartCountdown());
                 TimeLimitController.Instance.ResetTimer();
                 TimeLimitController.Instance.StopTimer();
-                Destroy(this);
+                dropOnStart = false;
             }
 
             Debug.Log("ƒLƒƒƒ“ƒoƒX‚ªã¸‚µ‚Ü‚·");

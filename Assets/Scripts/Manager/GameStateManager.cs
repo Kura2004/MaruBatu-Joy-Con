@@ -28,16 +28,17 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
     }
 
     // 盤面セット完了のフラグを更新するメソッド
-    public void SetBoardSetupComplete(bool isComplete)
+    private void SetBoardSetupComplete(bool isComplete)
     {
         IsBoardSetupComplete = isComplete;
-        TimeLimitController.Instance.StartTimer();
+
         Debug.Log("Board setup complete status: " + IsBoardSetupComplete);
     }
 
     // 盤面セットを開始するメソッド（引数としてセットアップ完了までの秒数を受け取る）
     public void StartBoardSetup(float setupDuration)
     {
+        ScenesAudio.UnPauseBgm();
         StartCoroutine(BoardSetupCoroutine(setupDuration));
     }
 
@@ -48,6 +49,7 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
 
         yield return new WaitForSeconds(setupDuration);
 
+        TimeLimitController.Instance.StartTimer();
         SetBoardSetupComplete(true);
     }
 

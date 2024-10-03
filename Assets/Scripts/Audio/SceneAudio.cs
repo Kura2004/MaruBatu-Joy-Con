@@ -23,14 +23,14 @@ public class ScenesAudio : MonoBehaviour
         switch (scene.name)
         {
             case "StartMenu":
-                //PlayStartMenuBgm();
+                PlayStartMenuBgm();
                 break;
             case "GameOver":
                 //PlayGameOverBgm();
                 break;
             case "4Å~4":
-                //PlayGameBgm();
-                //PauseBgm();
+                PlayGameBgm();
+                PauseBgm();
                 break;
             default:
                 Debug.LogWarning("Unknown scene name: " + scene.name);
