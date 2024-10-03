@@ -50,7 +50,13 @@ MonoBehaviour:
   masterVolume: 1
   bgmMasterVolume: 1
   seMasterVolume: 1
-  bgmSoundDatas: []
+  bgmSoundDatas:
+  - bgm: 2
+    audioClip: {fileID: 8300000, guid: d0cdcc306fbb77c448ae42baefd29715, type: 3}
+    volume: 0.3
+  - bgm: 3
+    audioClip: {fileID: 8300000, guid: 06465a8a0011b1a4fb05fc8fbc0d5f1e, type: 3}
+    volume: 0.25
   seSoundDatas:
   - se: 2
     audioClip: {fileID: 8300000, guid: 28ec36240940d0f46a326b736107485b, type: 3}
