@@ -53,6 +53,7 @@ public class JoyConButtonSelector : MonoBehaviour
                     if (buttonManager.buttons[i].tag == pair.tag)
                     {
                         buttonList[pair.index] = buttonManager.buttons[i].button;
+                        break;
                     }
                 }
             }
@@ -149,7 +150,7 @@ public class JoyConButtonSelector : MonoBehaviour
     // 前のボタンを選択
     private void SelectPreviousButton()
     {
-        currentIndex = (currentIndex - 1 + buttonList.Count) % buttonList.Count; // インデックスの範囲を循環
+        currentIndex = (currentIndex - 1) % buttonList.Count; // インデックスの範囲を循環
         UpdateButtonSelection();
     }
 
