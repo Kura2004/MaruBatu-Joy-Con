@@ -12,7 +12,6 @@ public class ArmAnimator : MonoBehaviour
     [SerializeField] private float rotationAngle = 90f;          // 回転角度
     [SerializeField] private float duration = 1f;                // 補完時間
     [SerializeField] private Ease easing = Ease.InOutSine;       // イージング
-    [SerializeField] private int loopCount = -1;                 // ループ回数 (-1は無限)
     [SerializeField] private float delayBetweenLoops = 0.5f;     // 正負が切り替わる時の待機時間
 
     private void Awake()
