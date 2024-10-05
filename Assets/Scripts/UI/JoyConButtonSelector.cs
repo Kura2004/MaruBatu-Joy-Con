@@ -88,6 +88,7 @@ public class JoyConButtonSelector : MonoBehaviour
                     buttonList[currentIndex].onClick.Invoke();
                 }
                 StartCooldown(); // クールダウン開始
+                return;
             }
 
 
@@ -97,12 +98,14 @@ public class JoyConButtonSelector : MonoBehaviour
                 volume.EnableBgmVolumeControl();
                 ScenesAudio.ClickSe();
                 StartCooldown(); // クールダウン開始
+                return;
             }
             else if (stickInput.y < -0.7f && !volume.onSeVolume)
             {
                 volume.EnableSeVolumeControl();
                 ScenesAudio.ClickSe();
                 StartCooldown(); // クールダウン開始
+                return;
             }
 
             if (volume != null)
@@ -128,6 +131,7 @@ public class JoyConButtonSelector : MonoBehaviour
         {
             SelectNextButton();
             StartCooldown(); // クールダウン開始
+            return;
         }
 
         // 指定ボタン（DPAD_DOWN）が押されたときに現在のボタンを実行する
@@ -138,6 +142,7 @@ public class JoyConButtonSelector : MonoBehaviour
                 buttonList[currentIndex].onClick.Invoke();
             }
             StartCooldown(); // クールダウン開始
+            return;
         }
 
         // インスペクターで右JoyConの情報を確認できるように値を更新
