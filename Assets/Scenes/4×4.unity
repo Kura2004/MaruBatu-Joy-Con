@@ -394,7 +394,6 @@ MonoBehaviour:
   rotationAngle: 3
   duration: 1
   easing: 4
-  loopCount: -1
   delayBetweenLoops: 3
 --- !u!1 &220749052
 GameObject:
@@ -5542,7 +5541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 3
-  colorDuration: 2
+  colorDuration: 0.8
   xMovementDistance: -595
   xEaseType: 1
   yMovementDistance: 30
@@ -6499,7 +6498,6 @@ MonoBehaviour:
   rotationAngle: 3
   duration: 1
   easing: 4
-  loopCount: -1
   delayBetweenLoops: 3
 --- !u!1 &1079793401
 GameObject:
@@ -7564,7 +7562,7 @@ MonoBehaviour:
   - 1.3
   - 1.3
   - 1.3
-  - 1
+  - 0.8
   countdownColors:
   - {r: 1, g: 1, b: 1, a: 0}
   - {r: 1, g: 1, b: 1, a: 0}
@@ -8264,7 +8262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 3
-  colorDuration: 2
+  colorDuration: 0.8
   xMovementDistance: 595
   xEaseType: 1
   yMovementDistance: 30

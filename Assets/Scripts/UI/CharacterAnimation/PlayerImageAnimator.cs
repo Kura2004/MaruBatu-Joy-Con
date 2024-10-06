@@ -42,7 +42,6 @@ public class PlayerImageAnimator : MonoBehaviour
     {
         xTween = MoveXPositive(); // X座標の正方向に移動し、Tweenを保存
         yTween = MoveYPositive(); // Y座標の正方向に移動し、Tweenを保存
-        ChangeSpritesColorToWhite(); // スプライトの色を白に変更
     }
 
     // アニメーションを停止
@@ -144,7 +143,7 @@ public class PlayerImageAnimator : MonoBehaviour
     }
 
     // スプライトの色を白に変化させる
-    private void ChangeSpritesColorToWhite()
+    public void ChangeSpritesColorToWhite()
     {
         foreach (var image in images)
         {
