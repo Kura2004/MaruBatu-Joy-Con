@@ -100,6 +100,8 @@ public class CountdownText : MonoBehaviour
                 ResetAlpha(endAlpha);
                 AnimateScale(initialScale, duration);
                 AnimateFade(initialAlpha, duration);
+                animator[0].ChangeSpritesColorToWhite();
+                animator[1].ChangeSpritesColorToWhite();
                 break;
 
             default:
