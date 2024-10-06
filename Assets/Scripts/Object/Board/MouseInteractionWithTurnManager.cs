@@ -42,8 +42,7 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
     public bool IsInteractionBlocked()
     {
         var stateManager = GameStateManager.Instance;
-        return colorChanger.isClicked ||
-               TimeControllerToggle.isTimeStopped ||
+        return TimeControllerToggle.isTimeStopped ||
                !stateManager.IsBoardSetupComplete || stateManager.IsRotating;
     }
 
@@ -74,7 +73,11 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
 
     private void HandleInteraction()
     {
-        if (IsInteractionBlocked()) return;
+        if (IsInteractionBlocked() || colorChanger.isClicked)
+        {
+            ScenesAudio.BlockedSe();
+            return;
+        }
 
         ScenesAudio.ClickSe();
         colorChanger.HandleClick();

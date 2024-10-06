@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 4751490953066715630}
-  scaleRate: 1.3
+  scaleRate: 1.2
   scaleDuration: 0.3
   targetTag: MassSelecter
 --- !u!114 &6911250469114174548
