@@ -35,9 +35,7 @@ public class RotatingButtonRight : MonoBehaviour
     {
         return CanvasBounce.isBlocked ||
                TimeControllerToggle.isTimeStopped ||
-               !GameStateManager.Instance.IsBoardSetupComplete ||
-               !rotatingManager.AnyMassClicked() ||
-               !rotatingManager.isSelected;
+               !GameStateManager.Instance.IsBoardSetupComplete;
     }
 
     private void OnTriggerStay(Collider other)
@@ -70,6 +68,13 @@ public class RotatingButtonRight : MonoBehaviour
 
     private void HandleClickInteraction()
     {
+        if (!rotatingManager.AnyMassClicked() ||
+               !rotatingManager.isSelected)
+        {
+            ScenesAudio.BlockedSe();
+            return;
+        }
+
         TimeLimitController.Instance.StopTimer();
         rotatingManager.StartRotationRight();
     }

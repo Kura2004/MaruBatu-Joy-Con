@@ -460,6 +460,7 @@ namespace Saito.SoundManager
                 Restart,
                 Fall,
                 Heart,
+                Blocked,
             }
 
             [Tooltip("音の種類をラベルで設定")]

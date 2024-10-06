@@ -101,6 +101,11 @@ public class ScenesAudio : MonoBehaviour
         SoundManager.Instance.PlaySe(SoundManager.SeSoundData.SE.Heart);
     }
 
+    public static void BlockedSe()
+    {
+        SoundManager.Instance.PlaySe(SoundManager.SeSoundData.SE.Blocked);
+    }
+
     // “Á’è‚ÌSE‚ğƒ~ƒ…[ƒg‚·‚é
     public static void MuteSpecificSe(SoundManager.SeSoundData.SE se)
     {
