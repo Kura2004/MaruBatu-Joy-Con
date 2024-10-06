@@ -78,7 +78,7 @@ public class CanvasBounce : MonoBehaviour
             Debug.Log("キャンバスが上昇します");
         }
 
-        if (leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_LEFT))
+        if (leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_LEFT) && dropOnStart)
         {
             ScenesLoader.Instance.LoadStartMenu();
             Debug.Log("スタート画面に戻ります");
