@@ -154,4 +154,18 @@ public class PlayerImageAnimator : MonoBehaviour
             }
         }
     }
+
+    // スプライトの色を引数で受け取った色に補完的に変更する
+    public void ChangeSpritesColor(Color targetColor, float duration)
+    {
+        foreach (var image in images)
+        {
+            if (image != null)
+            {
+                image.DOColor(targetColor, duration)
+                    .SetEase(Ease.InExpo); // 指定した時間で色を補完
+            }
+        }
+    }
+
 }

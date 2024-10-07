@@ -5802,6 +5802,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRight: {fileID: 580117252}
   moveLeft: {fileID: 580117253}
+  onColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  animator: {fileID: 1877738539}
   moveRightNext: 0
 --- !u!114 &580117252
 MonoBehaviour:
@@ -8603,6 +8606,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRight: {fileID: 2093761876}
   moveLeft: {fileID: 2093761877}
+  onColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  offColor: {r: 1, g: 1, b: 1, a: 1}
+  animator: {fileID: 410858968}
   moveRightNext: 0
 --- !u!114 &2093761876
 MonoBehaviour:
@@ -9048,8 +9054,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnSceneChange: 1
-  playerColor: {r: 0.5, g: 0, b: 0.5, a: 1}
-  opponentColor: {r: 0.56, g: 0.93, b: 0.56, a: 1}
+  playerColor: {r: 1, g: 0, b: 0, a: 1}
+  opponentColor: {r: 0, g: 0, b: 1, a: 1}
   currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &3479172062561246537
 MonoBehaviour:
@@ -9204,15 +9210,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefabs:
-  - {fileID: 4711909292114729282, guid: 7a4e6b0d8051b9245b9d5c3ca3511f80, type: 3}
-  - {fileID: 4711909292114729282, guid: 60c99b09873be0d43b0332104a5d2ddc, type: 3}
-  - {fileID: 4711909292114729282, guid: 6ccb3cea60b87bd4a8f7c1d00abf484d, type: 3}
-  - {fileID: 4711909292114729282, guid: 139b05579c598094c92690c62f749f82, type: 3}
-  - {fileID: 4711909292114729282, guid: 0a1dd4de6858d974297ab245f1525e2e, type: 3}
-  - {fileID: 4711909292114729282, guid: 3f95048d2f106624aacfd7e31f283315, type: 3}
+  - {fileID: 4711909292114729282, guid: 9c3ed86126b39e548bd11cd1ddbc122b, type: 3}
+  - {fileID: 4711909292114729282, guid: 6772d63b356fa0b429ccdc08cc22da17, type: 3}
+  - {fileID: 4711909292114729282, guid: dd92dd69512dfc84e96a40bf4c26c8a8, type: 3}
+  - {fileID: 4711909292114729282, guid: a945f660229f38b43bb30ae31f3c855a, type: 3}
+  - {fileID: 4711909292114729282, guid: 34ac93bd1ae562b448cda9646f3e4062, type: 3}
+  - {fileID: 4711909292114729282, guid: cb671c27298debe4297a1849ad709e97, type: 3}
   - {fileID: 4711909292114729282, guid: a88a30f17700e2e4d888ce173f8d1363, type: 3}
-  - {fileID: 4711909292114729282, guid: 894b511db76d1224b9d22fd40597a88f, type: 3}
-  - {fileID: 4711909292114729282, guid: edd197b0f7a8bef48bc93813abe643a1, type: 3}
+  - {fileID: 4711909292114729282, guid: fb6709c1260adf144a62053aefeb29ca, type: 3}
+  - {fileID: 4711909292114729282, guid: 481d98634dcae744e869e66f4e195a95, type: 3}
   rows: 3
   columns: 3
   spacing: 5

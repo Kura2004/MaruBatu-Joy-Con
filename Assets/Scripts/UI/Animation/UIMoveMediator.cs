@@ -5,6 +5,11 @@ public class UIMoveMediator : MonoBehaviour
     [SerializeField] private UIMoveRight moveRight; // 右に動かすクラス
     [SerializeField] private UIMoveLeft moveLeft;   // 左に動かすクラス
 
+    [SerializeField] Color onColor;
+    [SerializeField] Color offColor;
+
+    [SerializeField] PlayerImageAnimator animator;
+
     [SerializeField] bool moveRightNext; // 次にどちらに動かすかを管理するフラグ
     private void LateUpdate()
     {
@@ -47,6 +52,7 @@ public class UIMoveMediator : MonoBehaviour
         }
 
         moveRightNext = !moveRightNext; // 次回は反対の方向に動かす
-        
+        animator.ChangeSpritesColor(moveRightNext ? offColor : onColor, 0.3f);
+
     }
 }
