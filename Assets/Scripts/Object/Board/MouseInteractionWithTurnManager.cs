@@ -42,13 +42,14 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
     public bool IsInteractionBlocked()
     {
         var stateManager = GameStateManager.Instance;
-        return TimeControllerToggle.isTimeStopped ||
-               !stateManager.IsBoardSetupComplete || stateManager.IsRotating;
+        return //TimeControllerToggle.isTimeStopped ||
+               !stateManager.IsBoardSetupComplete ||
+               stateManager.IsRotating;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("MassSelecter") || IsInteractionBlocked()) return;
+        if (!other.CompareTag("MassSelecter")) return;
 
         // 2Pの決定ボタン（Aボタン）でインタラクション
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) &&

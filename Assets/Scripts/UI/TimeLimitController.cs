@@ -95,7 +95,7 @@ public class TimeLimitController : SingletonMonoBehaviour<TimeLimitController>
     private void TimeUp()
     {
         Debug.Log("Time is up!");
-        ScenesAudio.WinSe();
+        //ScenesAudio.WinSe();
         FadeManager.Instance.LoadScene("GameOver", 1.0f);
     }
 
