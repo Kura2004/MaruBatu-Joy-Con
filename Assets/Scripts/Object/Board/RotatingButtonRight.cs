@@ -7,8 +7,6 @@ public class RotatingButtonRight : MonoBehaviour
     [SerializeField]
     private RotatingMassObjectManager rotatingManager;
     [SerializeField]
-    private ObjectColorChanger colorChanger;
-    [SerializeField]
     string selecterTag = "Def";
 
     private List<Joycon> joycons;
@@ -17,10 +15,6 @@ public class RotatingButtonRight : MonoBehaviour
 
     private void Start()
     {
-        if (colorChanger == null)
-        {
-            Debug.LogError("ObjectColorChanger コンポーネントが設定されていません");
-        }
 
         // Joy-Conの初期化
         joycons = JoyconManager.Instance.j;

@@ -119,7 +119,7 @@ public class ColorTransitionEffect : MonoBehaviour
     }
 
     bool onEffect = false;
-    [SerializeField] bool setOrange = false;
+    [SerializeField] bool setRed = false;
 
     private void Update()
     {
@@ -129,14 +129,14 @@ public class ColorTransitionEffect : MonoBehaviour
             && !onEffect && rotating.isSelected)
         {
             onEffect = true;
-            if (setOrange)
+            if (setRed)
             {
-                StartColorTransition(ColorTag.Orange);
+                StartColorTransition(ColorTag.Red);
             }
 
             else
             {
-                StartColorTransition(ColorTag.Cyan);
+                StartColorTransition(ColorTag.Blue);
             }
         }
 
