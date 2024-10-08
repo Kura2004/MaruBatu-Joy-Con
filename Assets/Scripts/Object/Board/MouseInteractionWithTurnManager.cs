@@ -11,6 +11,8 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
     private Joycon leftJoycon;
     private Joycon rightJoycon;
 
+    public bool isClicked { get; private set; } = false;
+
     private void Start()
     {
         if (colorChanger == null)
@@ -28,11 +30,13 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
             leftJoycon = joycons.Find(c => c.isLeft);
             rightJoycon = joycons.Find(c => !c.isLeft);
         }
+
+        isClicked = false;
     }
 
     private void LateUpdate()
     {
-        if (colorChanger.isClicked) return;
+        if (isClicked) return;
         if (colorChanger.hoverAndClickColor != GlobalColorManager.Instance.currentColor)
         {
             colorChanger.ChangeHoverColor(GlobalColorManager.Instance.currentColor);
@@ -44,7 +48,8 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
         var stateManager = GameStateManager.Instance;
         return //TimeControllerToggle.isTimeStopped ||
                !stateManager.IsBoardSetupComplete ||
-               stateManager.IsRotating;
+               stateManager.IsRotating ||
+               isClicked;
     }
 
     private void OnTriggerStay(Collider other)
@@ -74,12 +79,13 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
 
     private void HandleInteraction()
     {
-        if (IsInteractionBlocked() || colorChanger.isClicked)
+        if (IsInteractionBlocked())
         {
             ScenesAudio.BlockedSe();
             return;
         }
 
+        isClicked = true;
         ScenesAudio.ClickSe();
         colorChanger.HandleClick();
         GameTurnManager.Instance.SetTurnChange(true);

@@ -31,7 +31,7 @@ public class RotatingMassObjectManager : MonoBehaviour
     {
         foreach (var obj in mass)
         {
-            if (obj != null && obj.GetComponent<ObjectColorChanger>()?.isClicked == true)
+            if (obj != null && obj.GetComponent<MouseInteractionWithTurnManager>()?.isClicked == true)
             {
                 return true; // いずれかのオブジェクトがクリックされていた場合
             }

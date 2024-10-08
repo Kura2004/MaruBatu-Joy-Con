@@ -17,9 +17,10 @@ public class ObjectColorChanger : MonoBehaviour
 
     private Renderer objectRenderer; // オブジェクトのRenderer
     private Tween colorTween; // 色の補完用のTween
-    public bool isClicked { get; private set; } = false;
 
-protected bool isChanging = false;
+    protected bool isClicked;
+
+    protected bool isChanging = false;
     protected virtual void Start()
     {
         objectRenderer = GetComponent<Renderer>();
@@ -27,6 +28,8 @@ protected bool isChanging = false;
         {
             objectRenderer.material.color = originalColor; // オブジェクトの元の色を設定
         }
+        isClicked = false;
+        isChanging = false;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -54,7 +57,7 @@ protected bool isChanging = false;
 
     public void HandleClick()
     {
-        isClicked = true; // クリック状態を記録
+        isClicked = true;
         if (objectRenderer != null)
         {
             objectRenderer.material.color = hoverAndClickColor;
@@ -69,7 +72,7 @@ protected bool isChanging = false;
 
     private bool ShouldChangeColorOnTrigger()
     {
-        return !GameStateManager.Instance.IsRotating && !isClicked
+        return !GameStateManager.Instance.IsRotating
             && !isChanging;
     }
 }
