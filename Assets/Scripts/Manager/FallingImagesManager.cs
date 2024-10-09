@@ -72,7 +72,7 @@ public class FallingImagesManager : MonoBehaviour
     {
 
         // Y座標を変えつつ、時間を基準にアニメーション
-        imageRectTransform.DOAnchorPosY(imageRectTransform.anchoredPosition.y - 300f, fallDuration)
+        imageRectTransform.DOAnchorPosY(imageRectTransform.anchoredPosition.y - 600f, fallDuration)
             .SetEase(Ease.Linear)  // 線形のスムーズなアニメーション
             .OnComplete(() =>
             {
