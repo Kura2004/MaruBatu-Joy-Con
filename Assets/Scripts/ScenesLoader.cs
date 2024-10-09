@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 /// <summary>
 /// MonoBehaviourを継承したシングルトンなクラス（ScenesLoader用）
@@ -19,7 +20,7 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
     public class SceneSettings
     {
         public string sceneName;
-        public float loadDuration; // ロード時間を少数第一位まで設定
+        public float loadDuration;  // ロード時間を少数第一位まで設定
     }
 
     [Header("シーンのロード時間設定")]
@@ -32,7 +33,6 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         // シーンがロードされたときに呼ばれるイベントを登録
         SceneManager.sceneLoaded += OnSceneLoaded;
         base.OnEnable();
-        isLocked = false;
     }
 
     private void OnDisable()
@@ -45,6 +45,10 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log($"シーン「{scene.name}」がロードされました。");
+
+        // ロード後に操作を無効化する処理を開始
+        float loadDuration = GetSceneLoadDuration(scene.name);
+        StartCoroutine(DisableInputForDuration(loadDuration));
 
         // シーンごとに異なる初期化処理が必要な場合はここに追加
         if (scene.name == "StartMenu")
@@ -75,11 +79,29 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         return 1f; // デフォルトのロード時間
     }
 
+    /// <summary>
+    /// 指定された期間の間、操作を無効にするためのコルーチン.
+    /// </summary>
+    /// <param name="duration">無効化する時間（秒）</param>
+    /// <returns></returns>
+    private IEnumerator DisableInputForDuration(float duration)
+    {
+        // 操作を無効化
+        isLocked = true;
+
+        // 指定された期間だけ待機
+        yield return new WaitForSeconds(duration + 0.1f);
+
+        // 操作を有効化
+        isLocked = false;
+    }
+
     public void LoadStage44()
     {
         if (isLocked)
         {
             Debug.LogWarning("シーンのロード処理がロックされています。");
+            ScenesAudio.BlockedSe();
             return;
         }
         isLocked = true;
@@ -93,6 +115,7 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         if (isLocked)
         {
             Debug.LogWarning("シーンのロード処理がロックされています。");
+            ScenesAudio.BlockedSe();
             return;
         }
         isLocked = true;
@@ -106,6 +129,7 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         if (isLocked)
         {
             Debug.LogWarning("シーンのロード処理がロックされています。");
+            ScenesAudio.BlockedSe();
             return;
         }
         isLocked = true;
@@ -114,4 +138,3 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         Debug.Log("GameOverを読み込みます");
     }
 }
-
