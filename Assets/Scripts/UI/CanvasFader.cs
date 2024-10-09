@@ -9,6 +9,8 @@ public class CanvasFader : MonoBehaviour
     [Header("Fade Settings")]
     [SerializeField] private float fadeDuration = 0.5f; // フェードの持続時間
 
+    [SerializeField] bool onStart = false;
+
     private void OnEnable()
     {
         // CanvasGroupとRectTransformの設定を確認
@@ -23,7 +25,11 @@ public class CanvasFader : MonoBehaviour
             mainCanvasGroup.alpha = 0; // アルファ値を0に設定
             mainCanvasGroup.interactable = false;
             mainCanvasGroup.blocksRaycasts = false;
-            mainCanvasGroup.gameObject.SetActive(false); // キャンバスを非アクティブにする
+        }
+
+        if (onStart)
+        {
+            ShowCanvas();
         }
     }
 

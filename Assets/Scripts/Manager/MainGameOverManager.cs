@@ -4,36 +4,45 @@ using UnityEngine;
 public class MainGameOverManager : MonoBehaviour
 {
     public static bool loadGameOver = false;
-
-    private float resetDelay = 0.03f; // ResetBoardSetupを呼び出すまでの遅延時間
     int GameEndCounter = 0;
+    [SerializeField] CanvasFader timeBoard;
 
     private void OnEnable()
     {
         GameEndCounter = 0;
         loadGameOver = false;
+        Invoke(nameof(ExecuteOpponentWin), 6.0f);
     }
-    // ボードリセットの処理をメソッド化
-    private void ExecuteResetBoardSetup()
+
+    private void ExecutePlayerWin()
     {
-        GameStateManager.Instance.ResetBoardSetup();
-        TimeLimitController.Instance.ResetEffect();
+        MoveHorizontally.Instance.MoveRight();
+        VictoryCameraAnimator.Instance.MoveCameraLeftToResetVictory();
+        ExecuteGameOver();
+    }
+
+    private void ExecuteOpponentWin()
+    {
+        MoveHorizontally.Instance.MoveLeft();
+        VictoryCameraAnimator.Instance.MoveCameraRightForVictory();
+        ExecuteGameOver();
+    }
+
+    private void ExecuteDraw()
+    {
+        ExecuteGameOver();
     }
 
     // ゲームオーバーを実行するメソッド
-    public void ExecuteGameOver()
+    private void ExecuteGameOver()
     {
         loadGameOver = true;
+        timeBoard.HideCanvas();
+        GameStateManager.Instance.ResetBoardSetup();
+        TimeLimitController.Instance.ResetEffect();
         TimeLimitController.Instance.StopTimer();
         //ScenesAudio.WinSe();
-
-        // DOTweenを使って指定した遅延時間後にフラグを立てる
-        DOTween.Sequence().AppendInterval(resetDelay).AppendCallback(() =>
-        {
-            ExecuteResetBoardSetup();
-        });
-
-        ScenesLoader.Instance.LoadGameOver(1.0f); // GameOverシーンをロード
+        //ScenesLoader.Instance.LoadGameOver(1.0f);
     }
 
     // プレイヤーと相手の状態を確認してゲームオーバーを管理
@@ -45,16 +54,14 @@ public class MainGameOverManager : MonoBehaviour
         // プレイヤーが勝利した場合
         if (gameState.IsPlayerWin)
         {
-            MoveHorizontally.Instance.MoveRight();
-            ExecuteGameOver();
+            ExecutePlayerWin();
             return;
         }
 
         // 相手が勝利した場合
         if (gameState.IsOpponentWin)
         {
-            MoveHorizontally.Instance.MoveLeft();
-            ExecuteGameOver();
+            ExecuteOpponentWin();
             return;
         }
 
@@ -63,7 +70,7 @@ public class MainGameOverManager : MonoBehaviour
             GameEndCounter++;
             if (GameEndCounter == 3)
             {
-                ExecuteGameOver();
+                ExecuteDraw();
                 return;
             }
         }
@@ -77,7 +84,7 @@ public class MainGameOverManager : MonoBehaviour
 
         if (gameState.AreBothPlayersWinning())
         {
-            ExecuteGameOver();
+            ExecuteDraw();
             return;
         }
     }

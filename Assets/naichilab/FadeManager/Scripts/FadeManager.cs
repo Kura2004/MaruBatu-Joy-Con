@@ -63,7 +63,7 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
                 {
                     if (GUI.Button(new Rect(20, 55 + i * 25, 100, 20), "Load Level"))
                     {
-                        LoadScene(sceneName, 1.0f);
+                        LoadScene(sceneName, 1.0f, this.fadeColor);
                     }
                     GUI.Label(new Rect(125, 55 + i * 25, 1000, 20), sceneName);
                     i++;
@@ -72,13 +72,13 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
         }
     }
 
-    /// <summary>
-    /// 画面遷移.
-    /// </summary>
-    /// <param name='scene'>シーン名</param>
-    /// <param name='interval'>暗転にかかる時間(秒)</param>
-    public void LoadScene(string scene, float interval)
+    // 画面遷移.
+    // <param name='scene'>シーン名</param>
+    // <param name='interval'>暗転にかかる時間(秒)</param>
+    // <param name='fadeColor'>フェードに使用する色</param>
+    public void LoadScene(string scene, float interval, Color fadeColor)
     {
+        this.fadeColor = fadeColor; // 受け取ったフェード色をセット
         StartCoroutine(TransScene(scene, interval));
     }
 

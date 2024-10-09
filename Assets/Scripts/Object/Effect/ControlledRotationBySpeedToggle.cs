@@ -48,17 +48,15 @@ public class ControlledRotationBySpeedToggle : MonoBehaviour
         // éwíËÇ≥ÇÍÇΩé≤Ç≈âÒì]
         Vector3 rotationVector = GetRotationVector();
 
-        if (!TimeControllerToggle.isTimeStopped)
+        //if (!TimeControllerToggle.isTimeStopped)
+        if (isFastRotating)
         {
-            if (isFastRotating)
-            {
-                // Zé≤Ç≈çÇë¨âÒì]
-                rotationVector = Vector3.forward;
-                currentRotationSpeed = fastRotationSpeed;
-            }
-
-            transform.Rotate(rotationVector * currentRotationSpeed * Time.deltaTime);
+            // Zé≤Ç≈çÇë¨âÒì]
+            rotationVector = Vector3.forward;
+            currentRotationSpeed = fastRotationSpeed;
         }
+
+        transform.Rotate(rotationVector * currentRotationSpeed * Time.deltaTime);
     }
 
     private Vector3 GetRotationVector()
