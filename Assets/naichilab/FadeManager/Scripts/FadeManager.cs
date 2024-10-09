@@ -42,8 +42,9 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
                 // Scene一覧を作成.
                 List<string> scenes = new List<string>
                 {
-                    "SampleScene"
-                    // 他のシーン名をここに追加
+                    "StartMenu",
+                    "4×4",
+                    "GameOver",
                 };
 
                 // Sceneが一つもない.
@@ -81,11 +82,6 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
         StartCoroutine(TransScene(scene, interval));
     }
 
-    /// <summary>
-    /// シーン遷移用コルーチン.
-    /// </summary>
-    /// <param name='scene'>シーン名</param>
-    /// <param name='interval'>暗転にかかる時間(秒)</param>
     private IEnumerator TransScene(string scene, float interval)
     {
         // だんだん暗く.
@@ -101,7 +97,23 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
         // シーンのロード中であることを示す
         SetLoadingSceneStatus(true);
 
-        // シーンを非同期で追加ロード.
+        // 非同期で読み込まれているシーンをすべてアンロード
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene loadedScene = SceneManager.GetSceneAt(i);
+
+            if (loadedScene.isLoaded && loadedScene.name != SceneManager.GetActiveScene().name)
+            {
+                // 非アクティブなシーンをアンロード
+                AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(loadedScene);
+                while (!unloadOperation.isDone)
+                {
+                    yield return null;
+                }
+            }
+        }
+
+        // 新しいシーンを非同期でロード.
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
         asyncLoad.allowSceneActivation = false; // 自動的にシーンが有効化されるのを防ぐ
 
@@ -119,7 +131,6 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
             yield return null;
         }
 
-
         // だんだん明るく.
         time = 0;
         while (time <= interval)
@@ -132,6 +143,7 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
         this.isFading = false;
         SetLoadingSceneStatus(false);
     }
+
 
     /// <summary>
     /// シーンのロード中状態を設定.

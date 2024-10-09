@@ -74,7 +74,7 @@ public class JoyConButtonSelector : MonoBehaviour
 
     private void Update()
     {
-        if (!canInput) return;
+        if (!canInput || buttonManager == null) return;
 
         // JoyConのスティック入力を取得
         Vector2 stickInput = new Vector2(-joyconL.GetStick()[1], joyconL.GetStick()[0]);
