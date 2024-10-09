@@ -732,13 +732,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 4938984026979999664, guid: 46fcc66fd1d599347a180452fb8abc3e, type: 3}
-  minX: -700
+  minX: -900
   maxX: 1200
-  startY: 200
-  fallDuration: 3
+  startY: 800
+  endY: -1300
+  fallDuration: 5
   rotateSpeed: 100
-  objectCount: 5
-  spawnInterval: 5
+  objectCount: 6
+  spawnInterval: 4
+  waitTimeAfterSpawn: 0.7
   parentTransform: {fileID: 1358927085}
 --- !u!1 &375988626
 GameObject:
