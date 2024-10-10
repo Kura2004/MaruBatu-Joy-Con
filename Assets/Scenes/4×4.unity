@@ -8709,6 +8709,9 @@ MonoBehaviour:
   duration: 1
   rotationEase: 19
   DrawAnimation: {fileID: 5171092015921322022}
+  moveMediator:
+  - {fileID: 580117251}
+  - {fileID: 2093761875}
 --- !u!114 &5171092015921322021
 MonoBehaviour:
   m_ObjectHideFlags: 0
