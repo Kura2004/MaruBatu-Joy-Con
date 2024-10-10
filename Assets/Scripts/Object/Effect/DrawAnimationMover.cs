@@ -64,11 +64,11 @@ public class DrawAnimationMover : MonoBehaviour
     private void ClosePanels()
     {
         // 左パネルが閉じるアニメーション
-        leftPanel.DOMove(leftPanel.position + panelCloseVector, panelCloseDuration)
+        leftPanel.DOLocalMove(leftPanel.localPosition + panelCloseVector, panelCloseDuration)
             .SetEase(panelCloseEase);
 
         // 右パネルが閉じるアニメーション（逆方向）
-        rightPanel.DOMove(rightPanel.position - panelCloseVector, panelCloseDuration)
+        rightPanel.DOLocalMove(rightPanel.localPosition - panelCloseVector, panelCloseDuration)
             .SetEase(panelCloseEase)
             .OnComplete(() => ScenesLoader.Instance.LoadGameOver(Color.black));
     }

@@ -5730,15 +5730,15 @@ RectTransform:
   m_GameObject: {fileID: 672738759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8399999, y: 1.1999999, z: 1.1999999}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4636156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1641, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 1777.5, y: 0}
+  m_SizeDelta: {x: 15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &672738761
 MonoBehaviour:
@@ -7105,15 +7105,15 @@ RectTransform:
   m_GameObject: {fileID: 1541625771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8399999, y: 1.1999999, z: 1.1999999}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4636156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1636, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1769, y: 0}
+  m_SizeDelta: {x: 2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1541625773
 MonoBehaviour:
@@ -7317,6 +7317,10 @@ PrefabInstance:
     - target: {fileID: 2044656492180896786, guid: 8f7658f5f1d55c645b9116b42d505878, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772029038423067126, guid: 8f7658f5f1d55c645b9116b42d505878, type: 3}
+      propertyPath: shakeIntensity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5933757594206869008, guid: 8f7658f5f1d55c645b9116b42d505878, type: 3}
       propertyPath: m_Name
@@ -8985,7 +8989,7 @@ MonoBehaviour:
   player1ReturnVector: {x: -7, y: 0, z: 0}
   player2OutwardVector: {x: 5, y: 0, z: 0}
   player2ReturnVector: {x: -7, y: 0, z: 0}
-  panelCloseVector: {x: 1950, y: 0, z: 0}
+  panelCloseVector: {x: 980, y: 0, z: 0}
   outwardDuration: 0.3
   returnDuration: 0.8
   panelCloseDuration: 0.7
