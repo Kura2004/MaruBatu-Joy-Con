@@ -12,51 +12,21 @@ public class ControlledRotationBySpeedToggle : MonoBehaviour
     [SerializeField, Tooltip("通常の回転速度 (度/秒)")]
     private float normalRotationSpeed = 10f;  // 通常時の回転速度
 
-    [SerializeField, Tooltip("速く回転するときの速度 (度/秒)")]
-    private float fastRotationSpeed = 50f;    // フラグがオンのときの回転速度
-
-    [SerializeField, Tooltip("回転速度を速くするかどうかを決定するフラグ")]
-    public bool isSpeedIncreased;    // 回転速度を変更するフラグ
-
     [SerializeField, Tooltip("どの軸で回転するか")]
     private RotationAxis rotationAxis = RotationAxis.Y;  // 回転する軸、デフォルトはY
 
-    private float currentRotationSpeed;
-    private bool isFastRotating = false; // 高速回転状態を管理する変数
+    private Vector3 rotationVector;
 
     void OnEnable()
     {
-        currentRotationSpeed = normalRotationSpeed;  // 初期の回転速度を設定
-        isSpeedIncreased = false;
-    }
-
-    private void OnMouseEnter()
-    {
-        isSpeedIncreased = true;
-    }
-
-    private void OnMouseExit()
-    {
-        isSpeedIncreased = false;
+        rotationVector = GetRotationVector();
     }
 
     void Update()
     {
-        // フラグに応じて回転速度を設定
-        currentRotationSpeed = isSpeedIncreased ? fastRotationSpeed : normalRotationSpeed;
-
-        // 指定された軸で回転
-        Vector3 rotationVector = GetRotationVector();
-
         //if (!TimeControllerToggle.isTimeStopped)
-        if (isFastRotating)
-        {
-            // Z軸で高速回転
-            rotationVector = Vector3.forward;
-            currentRotationSpeed = fastRotationSpeed;
-        }
 
-        transform.localEulerAngles += rotationVector * currentRotationSpeed * Time.deltaTime;
+        transform.localEulerAngles += rotationVector * normalRotationSpeed * Time.deltaTime;
     }
 
     private Vector3 GetRotationVector()
@@ -78,11 +48,5 @@ public class ControlledRotationBySpeedToggle : MonoBehaviour
     public void SetRotationAxis(RotationAxis newAxis)
     {
         rotationAxis = newAxis;
-    }
-
-    // 高速でZ軸回転するメソッド
-    public void SetFastRotation(bool isFast)
-    {
-        isFastRotating = isFast;
     }
 }
