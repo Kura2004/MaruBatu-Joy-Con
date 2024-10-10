@@ -82,9 +82,6 @@ public class MassColorChecker : MonoBehaviour
     }
     public IEnumerator HandleGameOverCoroutine()
     {
-        //ToggleMassState();
-
-
         // massのマテリアルカラーを指定した色に即時変更する
         foreach (var obj in mass)
         {
@@ -100,22 +97,5 @@ public class MassColorChecker : MonoBehaviour
             }
         }
         yield return null; // Coroutineを終了するために待機（必要に応じて他の処理を追加）
-    }
-
-
-    // 登録したマスの状態を切り替えるメソッド
-    public void ToggleMassState()
-    {
-        foreach (var obj in mass)
-        {
-            if (obj != null)
-            {
-                var massMove = obj.GetComponent<ControlledRotationBySpeedToggle>();
-                if (massMove != null)
-                {
-                    massMove.SetFastRotation(true);
-                }
-            }
-        }
     }
 }
