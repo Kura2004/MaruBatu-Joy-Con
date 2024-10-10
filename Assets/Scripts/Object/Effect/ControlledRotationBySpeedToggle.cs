@@ -56,7 +56,7 @@ public class ControlledRotationBySpeedToggle : MonoBehaviour
             currentRotationSpeed = fastRotationSpeed;
         }
 
-        transform.Rotate(rotationVector * currentRotationSpeed * Time.deltaTime);
+        transform.localEulerAngles += rotationVector * currentRotationSpeed * Time.deltaTime;
     }
 
     private Vector3 GetRotationVector()
