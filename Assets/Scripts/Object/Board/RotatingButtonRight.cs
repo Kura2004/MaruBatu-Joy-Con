@@ -27,8 +27,8 @@ public class RotatingButtonRight : MonoBehaviour
 
     private bool IsInteractionBlocked()
     {
-        return CanvasBounce.isBlocked ||
-               TimeControllerToggle.isTimeStopped ||
+        return //CanvasBounce.isBlocked ||
+               //TimeControllerToggle.isTimeStopped ||
                !GameStateManager.Instance.IsBoardSetupComplete;
     }
 

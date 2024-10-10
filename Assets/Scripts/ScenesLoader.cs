@@ -106,7 +106,7 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         }
         isLocked = true;
         float loadDuration = GetSceneLoadDuration("4Å~4");
-        FadeManager.Instance.LoadScene("4Å~4", loadDuration);
+        FadeManager.Instance.LoadScene("4Å~4", loadDuration, Color.black);
         Debug.Log("Stage44Çì«Ç›çûÇ›Ç‹Ç∑");
     }
 
@@ -120,11 +120,11 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         }
         isLocked = true;
         float loadDuration = GetSceneLoadDuration("StartMenu");
-        FadeManager.Instance.LoadScene("StartMenu", loadDuration);
+        FadeManager.Instance.LoadScene("StartMenu", loadDuration, Color.black);
         Debug.Log("StartMenuÇì«Ç›çûÇ›Ç‹Ç∑");
     }
 
-    public void LoadGameOver(float duration)
+    public void LoadGameOver(Color fadeColor)
     {
         if (isLocked)
         {
@@ -134,7 +134,7 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         }
         isLocked = true;
         float loadDuration = GetSceneLoadDuration("GameOver");
-        FadeManager.Instance.LoadScene("GameOver", duration);
+        FadeManager.Instance.LoadScene("GameOver", loadDuration, fadeColor);
         Debug.Log("GameOverÇì«Ç›çûÇ›Ç‹Ç∑");
     }
 }

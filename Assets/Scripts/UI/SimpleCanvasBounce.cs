@@ -82,7 +82,6 @@ public class SimpleCanvasBounce : CanvasBounce
                 canvasObject.SetActive(false);
             });
         }
-        isBlocked = false;
     }
 }
 

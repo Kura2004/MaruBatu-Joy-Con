@@ -24,6 +24,8 @@ public class PlayerImageAnimator : MonoBehaviour
     [Header("スプライト設定")]
     [SerializeField] private List<Image> images; // 複数のImageを保持するリスト
 
+    [SerializeField] private List<Image> winImages;
+
     private void Start()
     {
         // 初期色を黒に設定
@@ -34,6 +36,15 @@ public class PlayerImageAnimator : MonoBehaviour
                 image.color = Color.black;
             }
         }
+
+        foreach (var image in winImages)
+        {
+            if (image != null)
+            {
+                image.enabled = false;
+            }
+        }
+
         loopCounter = 0;
     }
 
@@ -168,4 +179,23 @@ public class PlayerImageAnimator : MonoBehaviour
         }
     }
 
+    public void OnWinImages()
+    {
+        // 初期色を黒に設定
+        foreach (var image in images)
+        {
+            if (image != null)
+            {
+                image.enabled = false;
+            }
+        }
+
+        foreach (var image in winImages)
+        {
+            if (image != null)
+            {
+                image.enabled = true;
+            }
+        }
+    }
 }

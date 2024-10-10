@@ -14,6 +14,15 @@ public class GameStateManager : SingletonMonoBehaviour<GameStateManager>
     // 相手の勝利状態
     public bool IsOpponentWin { get; private set; } = false;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        IsRotating = false;
+        IsBoardSetupComplete = false;
+        IsPlayerWin = false;
+        IsOpponentWin = false;
+    }
+
     // 回転を開始するメソッド
     public void StartRotation()
     {

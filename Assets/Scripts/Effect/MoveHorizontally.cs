@@ -22,7 +22,8 @@ public class MoveHorizontally : SingletonMonoBehaviour<MoveHorizontally>
     /// </summary>
     public void MoveRight()
     {
-        objectTransform.DOMoveX(objectTransform.position.x + moveDistance, moveDuration).SetEase(moveEase);
+        objectTransform.DOMoveX(objectTransform.position.x +
+            moveDistance, moveDuration).SetEase(moveEase);
     }
 
     /// <summary>
@@ -30,6 +31,7 @@ public class MoveHorizontally : SingletonMonoBehaviour<MoveHorizontally>
     /// </summary>
     public void MoveLeft()
     {
-        objectTransform.DOMoveX(objectTransform.position.x - moveDistance, moveDuration).SetEase(moveEase);
+        objectTransform.DOMoveX(objectTransform.position.x -
+            moveDistance, moveDuration).SetEase(moveEase);
     }
 }

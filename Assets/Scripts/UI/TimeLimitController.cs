@@ -22,7 +22,7 @@ public class TimeLimitController : SingletonMonoBehaviour<TimeLimitController>
 
     private void Update()
     {
-        if (!GameStateManager.Instance.IsBoardSetupComplete) { return; }
+        if (!GameStateManager.Instance.IsBoardSetupComplete) return;
 
         if (isTimerRunning)
         {
@@ -96,7 +96,19 @@ public class TimeLimitController : SingletonMonoBehaviour<TimeLimitController>
     {
         Debug.Log("Time is up!");
         //ScenesAudio.WinSe();
-        FadeManager.Instance.LoadScene("GameOver", 1.0f);
+        var gameTurn = GameTurnManager.Instance;
+        var gameState = GameStateManager.Instance;
+        if (gameTurn.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
+            gameTurn.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece)){
+
+            gameState.SetOpponentWin(true);
+        }
+        if (gameTurn.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) ||
+            gameTurn.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece))
+        {
+
+            gameState.SetPlayerWin(true);
+        }
     }
 
     // タイマーの減少を停止するメソッド

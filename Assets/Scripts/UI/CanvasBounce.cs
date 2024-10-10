@@ -17,7 +17,6 @@ public class CanvasBounce : MonoBehaviour
 
     protected bool isFalling = false;
     protected bool isBouncingComplete = true;
-    public static bool isBlocked = false;
 
     private Joycon leftJoycon;
     private Joycon rightJoycon;
@@ -94,7 +93,6 @@ public class CanvasBounce : MonoBehaviour
     {
         isFalling = true;
         isBouncingComplete = false; // バウンドアニメーションのフラグをリセット
-        isBlocked = true;
     }
 
     protected virtual void DropCanvas()
@@ -159,11 +157,10 @@ public class CanvasBounce : MonoBehaviour
 
             });
         }
-        isBlocked = false;
 
-        if (!TimeControllerToggle.isTimeStopped && !TimeLimitController.Instance.isTimerRunning)
+        if (!TimeLimitController.Instance.isTimerRunning)
         {
-            TimeLimitController.Instance.StartTimer();
+            //TimeLimitController.Instance.StartTimer();
         }
     }
 }

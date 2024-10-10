@@ -150,4 +150,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massTag: Mass
   targetMaterial: {fileID: 2100000, guid: 0668c0797e2b1b24d8b4db98bedd4203, type: 2}
-  targetColor: {r: 1, g: 0, b: 0, a: 1}
+  targetColor: {r: 1, g: 1, b: 0, a: 1}

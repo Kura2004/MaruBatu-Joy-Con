@@ -35,7 +35,6 @@ public class MassColorChecker : MonoBehaviour
         {
             if (HasFourOrMorePlayerObjects())
             {
-                
                 gameState.SetPlayerWin(true);
                 StartCoroutine(HandleGameOverCoroutine());
                 return;
