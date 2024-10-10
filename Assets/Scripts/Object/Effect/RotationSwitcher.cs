@@ -20,6 +20,7 @@ public class RotationSwitcher : MonoBehaviour
     private int toggleCounter = 0;
 
     [SerializeField] DrawAnimationMover DrawAnimation;
+    [SerializeField] UIMoveMediator[] moveMediator;
     private void Start()
     {
         currentRotation = 0f;
@@ -88,9 +89,11 @@ public class RotationSwitcher : MonoBehaviour
         {
             toggleCounter++;
 
-            if (toggleCounter == 3)
+            if (toggleCounter == 2)
             {
                 Debug.Log("1Pのターンです");
+                for (int i = 0; i < moveMediator.Length; i++)
+                    moveMediator[i].MoveToggle();
                 StartRotation();
             }
         }
@@ -99,9 +102,11 @@ public class RotationSwitcher : MonoBehaviour
         {
             toggleCounter++;
 
-            if (toggleCounter == 3)
+            if (toggleCounter == 2)
             {
                 Debug.Log("相手のターンです");
+                for (int i = 0; i < moveMediator.Length; i++)
+                    moveMediator[i].MoveToggle();
                 StartRotation();
             }
         }

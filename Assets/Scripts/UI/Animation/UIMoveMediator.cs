@@ -12,34 +12,6 @@ public class UIMoveMediator : MonoBehaviour
 
     [SerializeField] bool moveRightNext; // Ÿ‚É‚Ç‚¿‚ç‚É“®‚©‚·‚©‚ğŠÇ—‚·‚éƒtƒ‰ƒO
 
-    private int toggleCounter = 0;
-
-    private void Start()
-    {
-        toggleCounter = 0;
-    }
-    private void LateUpdate()
-    {
-        if (!GameStateManager.Instance.IsBoardSetupComplete) return;
-
-        var turnMana = GameTurnManager.Instance;
-        if (turnMana.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) && GameTurnManager.Instance.IsTurnChanging)
-        {
-            toggleCounter++;
-
-            if (toggleCounter == 3)
-                MoveToggle();
-        }
-
-        if (turnMana.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) && GameTurnManager.Instance.IsTurnChanging)
-        {
-            toggleCounter++;
-
-            if (toggleCounter == 3)
-                MoveToggle();
-        }
-    }
-
     // ‰E‚É“®‚©‚·
     public void MoveRight()
     {
@@ -66,7 +38,5 @@ public class UIMoveMediator : MonoBehaviour
 
         moveRightNext = !moveRightNext; // Ÿ‰ñ‚Í”½‘Î‚Ì•ûŒü‚É“®‚©‚·
         animator.ChangeSpritesColor(moveRightNext ? offColor : onColor, 0.3f);
-        toggleCounter = 0;
-
     }
 }
