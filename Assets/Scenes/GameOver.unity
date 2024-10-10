@@ -1216,7 +1216,6 @@ MonoBehaviour:
   - {fileID: 38147911}
   - {fileID: 1692369599}
   - {fileID: 1837974321}
-  parentRectTransform: {fileID: 1481137112}
 --- !u!1001 &1523874131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1752,7 +1751,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1079793405}
         m_TargetAssemblyTypeName: ScenesLoader, Assembly-CSharp
         m_MethodName: LoadStartMenu
         m_Mode: 1
