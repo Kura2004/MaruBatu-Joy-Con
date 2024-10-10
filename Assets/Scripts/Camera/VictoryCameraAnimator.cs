@@ -79,6 +79,9 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                         moveDuration).SetEase(moveEase);
                 }
 
+                animator1P.ChangeSpritesColor(Color.gray, 0.3f);
+                animator2P.ChangeSpritesColorToWhite();
+
                 hasAnimated = true;  // アニメーション実行済みに設定
             }
             else
@@ -130,6 +133,9 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                     playerImage2P.DOLocalMoveX(playerImage2P.localPosition.x + xImageOffset + adjustOffset,
                         moveDuration).SetEase(moveEase);
                 }
+
+                animator1P.ChangeSpritesColorToWhite();
+                animator2P.ChangeSpritesColor(Color.gray, 0.3f);
 
                 hasAnimated = true;  // アニメーション実行済みに設定
             }
