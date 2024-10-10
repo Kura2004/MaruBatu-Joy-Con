@@ -28,9 +28,13 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
 
     [SerializeField] LightningAnimator lightningAnimator;
 
-    //[SerializeField] UIObjectShaker shaker1P;
-    //[SerializeField] UIObjectShaker shaker2P;
+    [SerializeField] UIObjectShaker shaker1P;
+    [SerializeField] UIObjectShaker shaker2P;
 
+    [SerializeField] PlayerImageAnimator animator1P;
+    [SerializeField] PlayerImageAnimator animator2P;
+
+    [SerializeField] float delayDuration = 0;
     private void Start()
     {
         hasAnimated = false;
@@ -54,7 +58,11 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                                         .OnComplete(() =>
                                         {
                                             lightningAnimator.StartLightningAnimation();
-                                            //shaker2P.ShakeUIElement();
+                                            shaker2P.ShakeUIElement();
+                                            animator2P.OnWinImages();
+
+                                            DOVirtual.DelayedCall(delayDuration,
+                                                () => ScenesLoader.Instance.LoadGameOver(Color.white));
                                         });
 
                 // playerImage1Pをローカル座標で左に補完的に移動
@@ -102,6 +110,11 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                     .OnComplete(() =>
                     {
                         lightningAnimator.StartLightningAnimation();
+                        shaker1P.ShakeUIElement();
+                        animator1P.OnWinImages();
+
+                        DOVirtual.DelayedCall(delayDuration,
+                            () => ScenesLoader.Instance.LoadGameOver(Color.white));
                     });
 
                 // playerImage1Pをローカル座標で左に補完的に移動

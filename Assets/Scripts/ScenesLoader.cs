@@ -124,7 +124,7 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
         Debug.Log("StartMenu‚ğ“Ç‚İ‚İ‚Ü‚·");
     }
 
-    public void LoadGameOver(float duration)
+    public void LoadGameOver(Color fadeColor)
     {
         if (isLocked)
         {
@@ -133,8 +133,8 @@ public class ScenesLoader : SingletonMonoBehaviour<ScenesLoader>
             return;
         }
         isLocked = true;
-        //float loadDuration = GetSceneLoadDuration("GameOver");
-        FadeManager.Instance.LoadScene("GameOver", duration, Color.white);
+        float loadDuration = GetSceneLoadDuration("GameOver");
+        FadeManager.Instance.LoadScene("GameOver", loadDuration, fadeColor);
         Debug.Log("GameOver‚ğ“Ç‚İ‚İ‚Ü‚·");
     }
 }

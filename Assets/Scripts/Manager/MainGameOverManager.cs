@@ -5,19 +5,19 @@ public class MainGameOverManager : MonoBehaviour
 {
     public static bool loadGameOver = false;
     int GameEndCounter = 0;
-    [SerializeField] CanvasFader timeBoard;
+    [SerializeField] CanvasFader[] fadeUI;
 
     private void OnEnable()
     {
         GameEndCounter = 0;
         loadGameOver = false;
-        Invoke(nameof(ExecuteOpponentWin), 6.0f);
     }
 
     private void ExecutePlayerWin()
     {
         MoveHorizontally.Instance.MoveRight();
         VictoryCameraAnimator.Instance.MoveCameraLeftToResetVictory();
+        GameWinnerManager.Instance.SetWinner(GameWinnerManager.Winner.Player1);
         ExecuteGameOver();
     }
 
@@ -25,11 +25,13 @@ public class MainGameOverManager : MonoBehaviour
     {
         MoveHorizontally.Instance.MoveLeft();
         VictoryCameraAnimator.Instance.MoveCameraRightForVictory();
+        GameWinnerManager.Instance.SetWinner(GameWinnerManager.Winner.Player2);
         ExecuteGameOver();
     }
 
     private void ExecuteDraw()
     {
+        GameWinnerManager.Instance.SetWinner(GameWinnerManager.Winner.Draw);
         ExecuteGameOver();
     }
 
@@ -37,12 +39,12 @@ public class MainGameOverManager : MonoBehaviour
     private void ExecuteGameOver()
     {
         loadGameOver = true;
-        timeBoard.HideCanvas();
+        for (int i = 0; i < fadeUI.Length; i++)
+            fadeUI[i].HideCanvas();
         GameStateManager.Instance.ResetBoardSetup();
         TimeLimitController.Instance.ResetEffect();
         TimeLimitController.Instance.StopTimer();
         //ScenesAudio.WinSe();
-        //ScenesLoader.Instance.LoadGameOver(1.0f);
     }
 
     // プレイヤーと相手の状態を確認してゲームオーバーを管理
@@ -68,7 +70,7 @@ public class MainGameOverManager : MonoBehaviour
         if (GameTurnManager.Instance.IsGameEnd())
         {
             GameEndCounter++;
-            if (GameEndCounter == 3)
+            if (GameEndCounter == 2)
             {
                 ExecuteDraw();
                 return;

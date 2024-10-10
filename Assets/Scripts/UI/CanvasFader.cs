@@ -40,9 +40,6 @@ public class CanvasFader : MonoBehaviour
     {
         if (mainCanvasGroup != null)
         {
-            // キャンバスをアクティブにする
-            mainCanvasGroup.gameObject.SetActive(true);
-
             // アルファ値を1にフェード
             mainCanvasGroup.DOFade(1, fadeDuration).OnStart(() =>
             {
@@ -66,9 +63,6 @@ public class CanvasFader : MonoBehaviour
                 mainCanvasGroup.interactable = false;
                 mainCanvasGroup.blocksRaycasts = false;
                 Debug.Log("Canvas is faded out.");
-
-                // キャンバスを非アクティブにする
-                mainCanvasGroup.gameObject.SetActive(false);
             });
         }
     }

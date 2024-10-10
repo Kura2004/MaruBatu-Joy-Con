@@ -34,7 +34,8 @@ public class JoyconInputMover : MonoBehaviour
 
     void Update()
     {
-        if (isMoving || !GameStateManager.Instance.IsBoardSetupComplete) return;
+        if (isMoving || !GameStateManager.Instance.IsBoardSetupComplete
+            || GameStateManager.Instance.IsRotating) return;
 
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) ||
             GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup))

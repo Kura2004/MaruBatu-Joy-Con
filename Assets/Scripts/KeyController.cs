@@ -31,7 +31,7 @@ public class KeyController : MonoBehaviour
         // デバッグ用
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            ScenesLoader.Instance.LoadGameOver(0);
+            //ScenesLoader.Instance.LoadGameOver(0);
             Debug.Log("ゲームオーバー画面に行きます");
         }
     }

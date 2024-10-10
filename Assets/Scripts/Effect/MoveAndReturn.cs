@@ -69,7 +69,7 @@ public class MoveAndReturn : SingletonMonoBehaviour<MoveAndReturn>
             targetObject.SetActive(false);
         }
 
-        ScenesLoader.Instance.LoadGameOver(0);
+        //ScenesLoader.Instance.LoadGameOver(0);
     }
 
     public void StopAnimation()
