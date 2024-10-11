@@ -57,9 +57,8 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                 mainCamera.transform.DOMove(targetPosition, moveDuration).SetEase(moveEase)
                                         .OnComplete(() =>
                                         {
-                                            lightningAnimator.StartLightningAnimation();
+                                            lightningAnimator.StartLightningAnimationBlue();
                                             shaker2P.ShakeUIElement();
-                                            animator2P.OnWinImages();
 
                                             DOVirtual.DelayedCall(delayDuration,
                                                 () => ScenesLoader.Instance.LoadGameOver(Color.white));
@@ -80,7 +79,9 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                 }
 
                 animator1P.ChangeSpritesColor(Color.gray, 0.3f);
-                animator2P.ChangeSpritesColorToWhite();
+                animator2P.ChangeSpritesColor(Color.clear, 0.3f);
+                animator2P.OnWinImages();
+                animator2P.ChangeWinSpritesColor(Color.white, 0.3f);
 
                 hasAnimated = true;  // アニメーション実行済みに設定
             }
@@ -112,9 +113,8 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                 mainCamera.transform.DOMove(targetPosition, moveDuration).SetEase(moveEase)
                     .OnComplete(() =>
                     {
-                        lightningAnimator.StartLightningAnimation();
+                        lightningAnimator.StartLightningAnimationRed();
                         shaker1P.ShakeUIElement();
-                        animator1P.OnWinImages();
 
                         DOVirtual.DelayedCall(delayDuration,
                             () => ScenesLoader.Instance.LoadGameOver(Color.white));
@@ -134,8 +134,10 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                         moveDuration).SetEase(moveEase);
                 }
 
-                animator1P.ChangeSpritesColorToWhite();
                 animator2P.ChangeSpritesColor(Color.gray, 0.3f);
+                animator1P.ChangeSpritesColor(Color.clear, 0.3f);
+                animator1P.OnWinImages();
+                animator1P.ChangeWinSpritesColor(Color.yellow, 0.3f);
 
                 hasAnimated = true;  // アニメーション実行済みに設定
             }
