@@ -18,9 +18,6 @@ public class ObjectScaler : MonoBehaviour
     private Vector3 originalScale; // 元のスケール
     private Vector3 enlargedScale; // 拡大後のスケール
 
-    // タグを持つオブジェクトが触れているかのフラグ
-    private bool isTouchingTarget = false;
-
     private Tween scaleTween; // 現在のスケールアニメーション用Tween
 
     private void OnEnable()
@@ -42,7 +39,6 @@ public class ObjectScaler : MonoBehaviour
             GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup))) return;
         if (other.CompareTag(targetTag) && CanProcessInput())
         {
-            isTouchingTarget = true;
             EnlargeObject();
         }
     }
@@ -52,7 +48,6 @@ public class ObjectScaler : MonoBehaviour
     {
         if (other.CompareTag(targetTag) && CanProcessInput())
         {
-            isTouchingTarget = false;
             ResetObjectSize();
         }
     }
@@ -60,19 +55,7 @@ public class ObjectScaler : MonoBehaviour
     // タグを持つオブジェクトが触れている場合にのみ処理を実行するメソッド
     private void LateUpdate()
     {
-        //if (TimeControllerToggle.isTimeStopped || GameStateManager.Instance.IsRotating)
-        //{
-        //    return;
-        //}
 
-        //if (isTouchingTarget)
-        //{
-        //    EnlargeObject();
-        //}
-        //else
-        //{
-        //    ResetObjectSize();
-        //}
     }
 
     // オブジェクトのサイズを大きくするメソッド
@@ -115,6 +98,6 @@ public class ObjectScaler : MonoBehaviour
     // 入力を処理できるかどうかを判定するメソッド
     private bool CanProcessInput()
     {
-        return !TimeControllerToggle.isTimeStopped && !GameStateManager.Instance.IsRotating;
+        return !GameStateManager.Instance.IsRotating;
     }
 }
