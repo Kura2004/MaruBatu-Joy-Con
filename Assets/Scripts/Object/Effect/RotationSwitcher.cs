@@ -89,7 +89,7 @@ public class RotationSwitcher : MonoBehaviour
         {
             toggleCounter++;
 
-            if (toggleCounter == 2)
+            if (toggleCounter == 3)
             {
                 Debug.Log("1Pのターンです");
                 for (int i = 0; i < moveMediator.Length; i++)
@@ -102,7 +102,7 @@ public class RotationSwitcher : MonoBehaviour
         {
             toggleCounter++;
 
-            if (toggleCounter == 2)
+            if (toggleCounter == 3)
             {
                 Debug.Log("相手のターンです");
                 for (int i = 0; i < moveMediator.Length; i++)
