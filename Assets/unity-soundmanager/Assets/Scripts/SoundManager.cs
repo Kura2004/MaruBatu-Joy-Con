@@ -461,6 +461,8 @@ namespace Saito.SoundManager
                 Fall,
                 Heart,
                 Blocked,
+                Lightning,
+                Victory,
             }
 
             [Tooltip("音の種類をラベルで設定")]

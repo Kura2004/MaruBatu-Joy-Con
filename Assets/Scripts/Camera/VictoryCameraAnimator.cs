@@ -57,6 +57,7 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                 mainCamera.transform.DOMove(targetPosition, moveDuration).SetEase(moveEase)
                                         .OnComplete(() =>
                                         {
+                                            ScenesAudio.LightningSe();
                                             lightningAnimator.StartLightningAnimationBlue();
                                             shaker2P.ShakeUIElement();
                                             animator2P.OnBeamImage();
@@ -79,6 +80,7 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                         moveDuration).SetEase(moveEase);
                 }
 
+                ScenesAudio.VictorySe();
                 animator1P.ChangeSpritesColor(Color.gray, 0.3f);
                 animator2P.ChangeSpritesColor(Color.clear, 0.3f);
                 animator2P.OnWinImages();
@@ -114,6 +116,8 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                 mainCamera.transform.DOMove(targetPosition, moveDuration).SetEase(moveEase)
                     .OnComplete(() =>
                     {
+                        ScenesAudio.LightningSe();
+
                         lightningAnimator.StartLightningAnimationRed();
                         shaker1P.ShakeUIElement();
 
@@ -135,6 +139,7 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                         moveDuration).SetEase(moveEase);
                 }
 
+                ScenesAudio.VictorySe();
                 animator2P.ChangeSpritesColor(Color.gray, 0.3f);
                 animator1P.ChangeSpritesColor(Color.clear, 0.3f);
                 animator1P.OnWinImages();
