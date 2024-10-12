@@ -403,14 +403,14 @@ RectTransform:
   m_GameObject: {fileID: 180450856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1481137112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 830, y: -370}
+  m_AnchoredPosition: {x: 830, y: -371}
   m_SizeDelta: {x: 1268, y: 1186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &180450858
@@ -670,15 +670,15 @@ RectTransform:
   m_GameObject: {fileID: 326297554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1481137112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 476, y: -628}
-  m_SizeDelta: {x: 2440, y: 3840}
+  m_AnchoredPosition: {x: -165.2, y: 592.2}
+  m_SizeDelta: {x: 2906, y: 1941}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &326297556
 MonoBehaviour:
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 84100608b3e417c478c5421b78e59804, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7e40812941cebe4d9a365bfabe296b0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -897,15 +897,15 @@ RectTransform:
   m_GameObject: {fileID: 690247947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1481137112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 476, y: -628}
-  m_SizeDelta: {x: 2440, y: 3840}
+  m_AnchoredPosition: {x: 220, y: -291}
+  m_SizeDelta: {x: 1598, y: 1288}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &690247949
 MonoBehaviour:
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 24290229853696d43b3b8f2b87be4e51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cd954f163342d7849be0ee869042dbd4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -972,14 +972,14 @@ RectTransform:
   m_GameObject: {fileID: 877145408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1481137112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 476, y: -628}
+  m_AnchoredPosition: {x: 476, y: -629}
   m_SizeDelta: {x: 2440, y: 3840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &877145410
@@ -1097,14 +1097,14 @@ RectTransform:
   m_GameObject: {fileID: 1060095683}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1481137112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 476, y: -628}
+  m_AnchoredPosition: {x: 476, y: -629}
   m_SizeDelta: {x: 2440, y: 3840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1060095685
@@ -2429,8 +2429,8 @@ RectTransform:
   - {fileID: 257976018}
   - {fileID: 1481137112}
   - {fileID: 458407453}
-  - {fileID: 1115393429820477608}
   - {fileID: 4988618018700358896}
+  - {fileID: 1115393429820477608}
   - {fileID: 1892152300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
