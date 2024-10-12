@@ -59,6 +59,7 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                                         {
                                             lightningAnimator.StartLightningAnimationBlue();
                                             shaker2P.ShakeUIElement();
+                                            animator2P.OnBeamImage();
 
                                             DOVirtual.DelayedCall(delayDuration,
                                                 () => ScenesLoader.Instance.LoadGameOver(Color.white));
@@ -82,7 +83,7 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                 animator2P.ChangeSpritesColor(Color.clear, 0.3f);
                 animator2P.OnWinImages();
                 animator2P.ChangeWinSpritesColor(Color.white, 0.3f);
-
+                animator2P.OnWinImageRotationArm();
                 hasAnimated = true;  // アニメーション実行済みに設定
             }
             else

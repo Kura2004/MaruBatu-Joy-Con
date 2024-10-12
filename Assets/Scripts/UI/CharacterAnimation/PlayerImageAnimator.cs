@@ -25,6 +25,8 @@ public class PlayerImageAnimator : MonoBehaviour
     [SerializeField] private List<Image> images; // 複数のImageを保持するリスト
 
     [SerializeField] private List<Image> winImages;
+    [SerializeField] private ArmRotationAnimator[] armRotation;
+    [SerializeField] private Image beamImage;
 
     private void Start()
     {
@@ -184,7 +186,7 @@ public class PlayerImageAnimator : MonoBehaviour
     {
         foreach (var image in winImages)
         {
-            if (image != null)
+            if (image != null && image != beamImage)
             {
                 image.DOColor(targetColor, duration)
                     .SetEase(Ease.InExpo); // 指定した時間で色を補完
@@ -210,5 +212,24 @@ public class PlayerImageAnimator : MonoBehaviour
                 image.enabled = true;
             }
         }
+    }
+
+    public void OnWinImageRotationArm()
+    {
+
+        for (int i = 0; i < armRotation.Length; i++)
+        {
+            if (armRotation[i] != null)
+            {
+                armRotation[i].RotateZAxis(true);
+            }
+
+        }
+    }
+
+    public void OnBeamImage()
+    {
+        beamImage.DOColor(Color.white, 0.3f)
+                    .SetEase(Ease.OutExpo);
     }
 }
