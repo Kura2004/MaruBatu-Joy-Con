@@ -106,6 +106,15 @@ public class ScenesAudio : MonoBehaviour
         SoundManager.Instance.PlaySe(SoundManager.SeSoundData.SE.Blocked);
     }
 
+    public static void LightningSe()
+    {
+        SoundManager.Instance.PlaySe(SoundManager.SeSoundData.SE.Lightning);
+    }
+
+    public static void VictorySe()
+    {
+        SoundManager.Instance.PlaySe(SoundManager.SeSoundData.SE.Victory);
+    }
     // “Á’è‚ÌSE‚ğƒ~ƒ…[ƒg‚·‚é
     public static void MuteSpecificSe(SoundManager.SeSoundData.SE se)
     {

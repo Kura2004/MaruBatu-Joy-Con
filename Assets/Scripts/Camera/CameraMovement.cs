@@ -80,7 +80,7 @@ public class CameraMovement : MonoBehaviour
             currentVelocity = Vector3.zero;
             transform.position = startPosition;
             isLocked = false;
-            ScenesAudio.WinSe(); // 必要に応じて音を再生するメソッドを追加
+            //ScenesAudio.WinSe(); // 必要に応じて音を再生するメソッドを追加
         }
     }
 }
