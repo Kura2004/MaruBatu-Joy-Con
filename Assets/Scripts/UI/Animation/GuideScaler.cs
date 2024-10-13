@@ -33,6 +33,7 @@ public class GuideScaler : MonoBehaviour
         if (guideImage != null)
         {
             Vector3 targetScale = initialScale * scaleMultiplier;  // Šg‘å”{—¦‚ð“K—p
+            guideImage.transform.localScale = Vector3.zero;
             guideImage.transform.DOScale(targetScale, duration).SetEase(easing);
         }
     }
