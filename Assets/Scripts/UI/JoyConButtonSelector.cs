@@ -74,7 +74,17 @@ public class JoyConButtonSelector : MonoBehaviour
 
     private void Update()
     {
-        if (!canInput || buttonManager == null) return;
+        if(buttonManager.onGuide&& joyconL.GetButtonDown(Joycon.Button.DPAD_LEFT))
+        {
+            if (currentIndex >= 0 && currentIndex < buttonList.Count && buttonList[currentIndex] != null)
+            {
+                buttonList[currentIndex].onClick.Invoke();
+            }
+            StartCooldown(); // クールダウン開始
+            return;
+        }
+
+        if (!canInput || buttonManager == null || buttonManager.onGuide) return;
 
         // JoyConのスティック入力を取得
         Vector2 stickInput = new Vector2(-joyconL.GetStick()[1], joyconL.GetStick()[0]);
