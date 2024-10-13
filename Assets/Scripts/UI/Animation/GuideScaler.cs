@@ -9,8 +9,12 @@ public class GuideScaler : MonoBehaviour
     [SerializeField] private Ease easing = Ease.InOutQuad;  // イージングをインスペクターで設定
     [SerializeField] private float scaleMultiplier = 1.5f;  // 拡大時の倍率をインスペクターで指定
 
+    [SerializeField] ButtonManager buttonManager;
+
     private Vector3 initialScale; // 初期のスケールを保存
     private bool isGuideVisible = true; // ガイドが表示されているかどうかのフラグ
+
+    public bool isAnimating = false;
 
     private void Start()
     {
@@ -29,23 +33,29 @@ public class GuideScaler : MonoBehaviour
     // n秒でガイドのスケールを拡大するメソッド
     public void ShowGuide()
     {
+        isAnimating = true;
         guideImage.enabled = true;
         if (guideImage != null)
         {
             Vector3 targetScale = initialScale * scaleMultiplier;  // 拡大倍率を適用
             guideImage.transform.localScale = Vector3.zero;
-            guideImage.transform.DOScale(targetScale, duration).SetEase(easing);
+            guideImage.transform.DOScale(targetScale, duration).SetEase(easing).OnComplete(() =>
+            {
+                isAnimating = false;
+            }); ;
         }
     }
 
     // n秒でガイドのスケールを初期値に戻す（非表示状態）メソッド
     public void HideGuide()
     {
+        isAnimating = true;
         if (guideImage != null)
         {
             guideImage.transform.DOScale(Vector3.zero, duration).SetEase(easing).OnComplete(() =>
             {
                 guideImage.enabled = false;
+                isAnimating = false;
             });
         }
     }
@@ -53,8 +63,12 @@ public class GuideScaler : MonoBehaviour
     // ガイドの表示/非表示をトグルするメソッド
     public void ToggleGuide()
     {
+        if (isAnimating) return;
         if (guideImage != null)
         {
+            buttonManager.ToggleGuide();
+            ScenesAudio.ClickSe();
+
             if (isGuideVisible)
             {
                 HideGuide();
