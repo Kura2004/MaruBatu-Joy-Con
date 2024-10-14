@@ -6,8 +6,7 @@ public class KeyController : MonoBehaviour
 {
     private void Start()
     {
-        Saito.SoundManager.SoundManager.Instance.MuteBgm();
-        Saito.SoundManager.SoundManager.Instance.MuteSe();
+
     }
     private void Update()
     {
