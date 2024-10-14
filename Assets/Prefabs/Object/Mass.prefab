@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2636477945127955293}
   - component: {fileID: 1977166575683011766}
   - component: {fileID: 5795383731723361215}
-  - component: {fileID: 9045214705463559075}
+  - component: {fileID: 1003129522968572162}
   m_Layer: 0
   m_Name: MassBack
   m_TagString: Untagged
@@ -309,7 +309,7 @@ MonoBehaviour:
   scaleRate: 1.1
   scaleDuration: 0.3
   targetTag: MassSelecter
---- !u!114 &9045214705463559075
+--- !u!114 &1003129522968572162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4752535685841456287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7b25bf45da3694a9acbedddc80647c, type: 3}
+  m_Script: {fileID: 11500000, guid: a0fd0af6a8342a44b9d1a8a6970e2d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   originalColor: {r: 0, g: 0, b: 0, a: 1}
