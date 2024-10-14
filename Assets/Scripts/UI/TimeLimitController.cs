@@ -24,6 +24,10 @@ public class TimeLimitController : SingletonMonoBehaviour<TimeLimitController>
     {
         if (!GameStateManager.Instance.IsBoardSetupComplete) return;
 
+        UpdateTimerDisplay();
+
+        if (TimeLimitAdjuster.timeLimit > 40) return;
+
         if (isTimerRunning)
         {
             currentTime -= Time.deltaTime; // 毎フレーム時間を減少させる
@@ -35,12 +39,10 @@ public class TimeLimitController : SingletonMonoBehaviour<TimeLimitController>
                 StopTimer(); // タイマーを停止
                 return;
             }
-            else if (currentTime <= effectTriggerTime && !isEffectTriggered) 
+            else if (currentTime <= effectTriggerTime && !isEffectTriggered)
             {
                 TriggerEffects(); // エフェクトを再生
             }
-
-            UpdateTimerDisplay(); // 表示を更新
         }
     }
 
@@ -89,6 +91,9 @@ public class TimeLimitController : SingletonMonoBehaviour<TimeLimitController>
     private void UpdateTimerDisplay()
     {
         timerDisplay.text = currentTime.ToString("F1") + "s"; // 小数点以下1桁で表示
+
+        if (TimeLimitAdjuster.timeLimit > 40)
+            timerDisplay.text = "-";
     }
 
     // 時間切れ時に呼び出されるメソッド

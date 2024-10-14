@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class KeyController : MonoBehaviour
 {
+    private void Start()
+    {
+        Saito.SoundManager.SoundManager.Instance.MuteBgm();
+        Saito.SoundManager.SoundManager.Instance.MuteSe();
+    }
     private void Update()
     {
         // ESCキーが押されたらアプリケーションを終了

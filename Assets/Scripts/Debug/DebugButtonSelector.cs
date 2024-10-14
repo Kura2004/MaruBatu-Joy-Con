@@ -3,12 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening; // DOTweenを使用するための名前空間
 
-public class JoyConButtonSelector : MonoBehaviour
+public class DebugButtonSelector : MonoBehaviour
 {
-    private List<Joycon> joycons; // JoyConのリスト
-    private Joycon joyconL; // 左JoyConのインスタンス
-    private Joycon joyconR;
-
     [SerializeField] private ButtonManager buttonManager; // ButtonManagerの参照
     [SerializeField] private float inputCooldown = 0.5f; // ボタン切り替え後のクールダウン時間
     [SerializeField] private float colorTransitionDuration = 0.3f; // ボタンの色が変わるまでの時間
@@ -23,22 +19,9 @@ public class JoyConButtonSelector : MonoBehaviour
     private List<Button> buttonList = new List<Button>(); // ボタンを格納するリスト
 
     [SerializeField] VolumeSettings volume;
+
     private void Start()
     {
-        // JoyConのリストを取得
-        joycons = JoyconManager.Instance.j;
-
-        // JoyConが見つからなかった場合のエラーメッセージ
-        if (joycons == null || joycons.Count == 0)
-        {
-            Debug.LogError("JoyConが見つかりません。JoyConManagerを設定してください。");
-            return;
-        }
-
-        // 左と右のJoyConを取得
-        joyconL = joycons.Find(c => c.isLeft);
-        joyconR = joycons.Find(c => !c.isLeft);
-
         // 各ボタンの元のローカルスケールを保存
         if (buttonManager != null && buttonManager.buttons.Count > 0)
         {
@@ -74,91 +57,51 @@ public class JoyConButtonSelector : MonoBehaviour
 
     private void Update()
     {
-        if(buttonManager.onGuide&& joyconL.GetButtonDown(Joycon.Button.DPAD_LEFT))
+        // Enterキーが押されたときに現在のボタンを実行する
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             if (currentIndex >= 0 && currentIndex < buttonList.Count && buttonList[currentIndex] != null)
             {
                 buttonList[currentIndex].onClick.Invoke();
             }
             StartCooldown(); // クールダウン開始
-            return;
         }
 
         if (!canInput || buttonManager == null || buttonManager.onGuide) return;
 
-        // JoyConのスティック入力を取得
-        Vector2 stickInput = new Vector2(-joyconL.GetStick()[1], joyconL.GetStick()[0]);
+        // HorizontalとVerticalの入力を取得
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
-        if (buttonManager.isLocked)
-        {
-            if (joyconL.GetButtonDown(Joycon.Button.DPAD_LEFT))
-            {
-                if (currentIndex >= 0 && currentIndex < buttonList.Count && buttonList[currentIndex] != null)
-                {
-                    buttonList[currentIndex].onClick.Invoke();
-                }
-                StartCooldown(); // クールダウン開始
-                return;
-            }
-
-
-            // スティックの上下操作でボタンを切り替える
-            if (stickInput.y > 0.7f && volume.onSeVolume)
-            {
-                volume.EnableBgmVolumeControl();
-                ScenesAudio.ClickSe();
-                StartCooldown(); // クールダウン開始
-                return;
-            }
-            else if (stickInput.y < -0.7f && !volume.onSeVolume)
-            {
-                volume.EnableSeVolumeControl();
-                ScenesAudio.ClickSe();
-                StartCooldown(); // クールダウン開始
-                return;
-            }
-
-            if (volume != null)
-            {
-                if (!volume.onSeVolume)
-                    volume.AddBgmVolume(stickInput.x * 0.01f);
-
-                else
-                    volume.AddSeVolume(stickInput.x * 0.01f);
-            }
-        }
-
-        if (joyconL == null || buttonManager.isLocked) 
-            return;
-
-        // スティックの上下操作でボタンを切り替える
-        if (stickInput.y > 0.5f)
+        // ボタンを切り替える処理
+        if (verticalInput > 0.5f)
         {
             SelectPreviousButton();
             StartCooldown(); // クールダウン開始
         }
-        else if (stickInput.y < -0.5f)
+        else if (verticalInput < -0.5f)
         {
             SelectNextButton();
             StartCooldown(); // クールダウン開始
-            return;
         }
 
-        // 指定ボタン（DPAD_DOWN）が押されたときに現在のボタンを実行する
-        if (joyconL.GetButtonDown(Joycon.Button.DPAD_DOWN))
+        // Enterキーが押されたときに現在のボタンを実行する
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             if (currentIndex >= 0 && currentIndex < buttonList.Count && buttonList[currentIndex] != null)
             {
                 buttonList[currentIndex].onClick.Invoke();
             }
             StartCooldown(); // クールダウン開始
-            return;
         }
 
-        // インスペクターで右JoyConの情報を確認できるように値を更新
-        if (joyconR != null)
+        // ボリュームコントロール処理
+        if (volume != null)
         {
-            Debug.Log($"Right JoyCon Stick: {joyconR.GetStick()}");
+            if (!volume.onSeVolume)
+                volume.AddBgmVolume(horizontalInput * 0.01f);
+            else
+                volume.AddSeVolume(horizontalInput * 0.01f);
         }
     }
 
@@ -212,12 +155,4 @@ public class JoyConButtonSelector : MonoBehaviour
             canInput = true; // クールダウンが終了したら入力を再度有効にする
         });
     }
-}
-
-// インデックスとタグのペアを定義するクラス
-[System.Serializable]
-public class ButtonTagPair
-{
-    public int index;
-    public string tag;
 }

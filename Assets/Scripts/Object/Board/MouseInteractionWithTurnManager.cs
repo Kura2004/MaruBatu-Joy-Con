@@ -46,32 +46,29 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
     public bool IsInteractionBlocked()
     {
         var stateManager = GameStateManager.Instance;
-        return //TimeControllerToggle.isTimeStopped ||
-               !stateManager.IsBoardSetupComplete ||
+        return !stateManager.IsBoardSetupComplete ||
                stateManager.IsRotating ||
                GameTurnManager.Instance.IsTurnChanging;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("MassSelecter") || IsInteractionBlocked()) return;
+        if (!other.CompareTag("MassSelecter")) return;
 
-        // 2Pの決定ボタン（Aボタン）でインタラクション
+        // テスト用
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            HandleInteraction();
+        }
+
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) &&
             rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.DPAD_UP))
         {
             HandleInteraction();
         }
 
-        // 1Pの決定ボタン（Aボタン）でインタラクション
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) &&
             leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_DOWN))
-        {
-            HandleInteraction();
-        }
-
-        // テスト用
-        if (Input.GetKeyDown(KeyCode.Return))
         {
             HandleInteraction();
         }
@@ -79,6 +76,7 @@ public class MouseInteractionWithTurnManager : MonoBehaviour
 
     private void HandleInteraction()
     {
+        if (IsInteractionBlocked()) return;
         if (isClicked)
         {
             ScenesAudio.BlockedSe();

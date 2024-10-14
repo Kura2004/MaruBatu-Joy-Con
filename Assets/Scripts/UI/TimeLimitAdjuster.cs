@@ -59,6 +59,14 @@ public class TimeLimitAdjuster : MonoBehaviour
                 StartInputCooldown(); // クールダウンを開始
             }
         }
+
+        float debugInput = Input.GetAxis("Vertical");
+
+        if (Mathf.Abs(debugInput) > 0.01f && canAdjustTime)
+        {
+            AdjustTimeLimit(debugInput > 0 ? 10 : -10); // 十の位を増減
+            StartInputCooldown(); // クールダウンを開始
+        }
     }
 
     int prevTimeLimit = 0;
@@ -67,7 +75,7 @@ public class TimeLimitAdjuster : MonoBehaviour
         if (!canAdjustTime) return;
 
         timeLimit += amount;
-        timeLimit = Mathf.Clamp(timeLimit, 20, 40); // 最小値20、最大値40に制限
+        timeLimit = Mathf.Clamp(timeLimit, 20, 50); // 最小値20、最大値40に制限
 
         if (timeLimit != prevTimeLimit)
         {
@@ -84,6 +92,10 @@ public class TimeLimitAdjuster : MonoBehaviour
     private void UpdateValueDisplay()
     {
         valueDisplay.text = timeLimit.ToString("F0") + "s"; // 整数で表示
+        if (timeLimit > 40)
+        {
+            valueDisplay.text = Mathf.Infinity.ToString();
+        }
     }
 
     // クールダウンを開始する

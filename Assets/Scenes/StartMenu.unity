@@ -668,8 +668,6 @@ MonoBehaviour:
     tag: Sound
   - button: {fileID: 961323843}
     tag: Guide
-  - button: {fileID: 1119510775}
-    tag: Quit
   isLocked: 0
   onGuide: 0
   specialTag: Sound
@@ -698,8 +696,6 @@ MonoBehaviour:
     tag: Sound
   - index: 2
     tag: Guide
-  - index: 3
-    tag: Quit
   volume: {fileID: 404617698}
 --- !u!114 &336695102
 MonoBehaviour:
@@ -2655,7 +2651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1119510772
 RectTransform:
   m_ObjectHideFlags: 0

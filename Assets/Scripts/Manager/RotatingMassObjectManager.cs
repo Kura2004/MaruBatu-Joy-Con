@@ -17,6 +17,8 @@ public class RotatingMassObjectManager : MonoBehaviour
     private GameObject[] mass = new GameObject[4];
     private int massIndex = 0;
 
+    [SerializeField] private Ease EaseType = Ease.Linear;
+
     private Dictionary<MassPoint, GameObject> massPlaceholders = new Dictionary<MassPoint, GameObject>();
 
     private enum MassPoint
@@ -84,11 +86,10 @@ public class RotatingMassObjectManager : MonoBehaviour
 
         MakeObjectsChildren();
 
-        Quaternion startRotation = transform.rotation;
+        Quaternion startRotation = transform.localRotation;
         Quaternion endRotation = startRotation * Quaternion.Euler(0, degrees, 0);
         transform.rotation = endRotation; // 最終的な回転を設定
 
-        // オブジェクトの位置を対数関数的に補完して移動
         foreach (var entry in massPlaceholders)
         {
             MassPoint point = entry.Key;
@@ -97,9 +98,8 @@ public class RotatingMassObjectManager : MonoBehaviour
 
             if (mass[index] != null)
             {
-                // 対数関数的なイージングを使って移動
-                mass[index].transform.DOMove(placeholder.transform.position, rotationDuration)
-                    .SetEase(Ease.InOutQuad); // ここでEaseを調整
+                mass[index].transform.DOLocalMove(placeholder.transform.position, rotationDuration)
+                    .SetEase(EaseType);
             }
         }
 
@@ -129,8 +129,6 @@ public class RotatingMassObjectManager : MonoBehaviour
 
                 placeholder.transform.SetParent(transform);
                 massPlaceholders[(MassPoint)i] = placeholder;
-
-                //mass[i].GetComponent<ObjectScaler>().IgnoreMouseInput();
             }
         }
     }
@@ -142,7 +140,6 @@ public class RotatingMassObjectManager : MonoBehaviour
             if (obj != null)
             {
                 obj.transform.SetParent(null);
-                //obj.GetComponent<ObjectScaler>().ResumeMouseInput();
             }
         }
 
