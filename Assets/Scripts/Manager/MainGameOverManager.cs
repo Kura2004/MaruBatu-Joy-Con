@@ -11,7 +11,7 @@ public class MainGameOverManager : MonoBehaviour
     {
         GameEndCounter = 0;
         loadGameOver = false;
-        //Invoke(nameof(ExecutePlayerWin), 7.0f);
+        //Invoke(nameof(ExecuteOpponentWin), 7.0f);
     }
 
     private void ExecutePlayerWin()
