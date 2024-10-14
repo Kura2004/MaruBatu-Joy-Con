@@ -37,6 +37,7 @@ public class ObjectScaler : MonoBehaviour
     {
         if ((GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) ||
             GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup))) return;
+
         if (other.CompareTag(targetTag) && CanProcessInput())
         {
             EnlargeObject();
@@ -50,12 +51,6 @@ public class ObjectScaler : MonoBehaviour
         {
             ResetObjectSize();
         }
-    }
-
-    // タグを持つオブジェクトが触れている場合にのみ処理を実行するメソッド
-    private void LateUpdate()
-    {
-
     }
 
     // オブジェクトのサイズを大きくするメソッド

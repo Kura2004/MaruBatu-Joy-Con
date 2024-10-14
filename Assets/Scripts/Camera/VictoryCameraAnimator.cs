@@ -121,6 +121,8 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                         lightningAnimator.StartLightningAnimationRed();
                         shaker1P.ShakeUIElement();
 
+                        animator1P.OnBeamImage();
+
                         DOVirtual.DelayedCall(delayDuration,
                             () => ScenesLoader.Instance.LoadGameOver(Color.white));
                     });
@@ -143,7 +145,8 @@ public class VictoryCameraAnimator : SingletonMonoBehaviour<VictoryCameraAnimato
                 animator2P.ChangeSpritesColor(Color.gray, 0.3f);
                 animator1P.ChangeSpritesColor(Color.clear, 0.3f);
                 animator1P.OnWinImages();
-                animator1P.ChangeWinSpritesColor(Color.yellow, 0.3f);
+                animator1P.ChangeWinSpritesColor(Color.white, 0.3f);
+                animator1P.OnWinImageRotationArm();
 
                 hasAnimated = true;  // アニメーション実行済みに設定
             }

@@ -29,9 +29,7 @@ public class RotatingButtonLeft : MonoBehaviour
 
     private bool IsInteractionBlocked()
     {
-        return //CanvasBounce.isBlocked ||
-               //TimeControllerToggle.isTimeStopped ||
-               !GameStateManager.Instance.IsBoardSetupComplete;
+        return !GameStateManager.Instance.IsBoardSetupComplete;
     }
 
     private void OnTriggerStay(Collider other)
@@ -60,6 +58,7 @@ public class RotatingButtonLeft : MonoBehaviour
         {
             HandleClickInteraction();
         }
+
     }
 
     private void HandleClickInteraction()

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RotationSwitcher : MonoBehaviour
 {
@@ -21,10 +22,12 @@ public class RotationSwitcher : MonoBehaviour
 
     [SerializeField] DrawAnimationMover DrawAnimation;
     [SerializeField] UIMoveMediator[] moveMediator;
+    [SerializeField] Image clockBack;
     private void Start()
     {
         currentRotation = 0f;
         toggleCounter = 0;
+        changeColorEffect();
     }
 
     private void StartRotation()
@@ -94,6 +97,7 @@ public class RotationSwitcher : MonoBehaviour
                 Debug.Log("1Pのターンです");
                 for (int i = 0; i < moveMediator.Length; i++)
                     moveMediator[i].MoveToggle();
+                changeColorEffect();
                 StartRotation();
             }
         }
@@ -107,9 +111,15 @@ public class RotationSwitcher : MonoBehaviour
                 Debug.Log("相手のターンです");
                 for (int i = 0; i < moveMediator.Length; i++)
                     moveMediator[i].MoveToggle();
+                changeColorEffect();
                 StartRotation();
             }
         }
+    }
+
+    void changeColorEffect()
+    {
+        clockBack.DOColor(GlobalColorManager.Instance.CurrentColor, 0.3f);
     }
 
     private void ResetRotation()

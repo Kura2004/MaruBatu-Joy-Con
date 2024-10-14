@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class CanvasBounce : MonoBehaviour
+public class DebugCanvasBounce : MonoBehaviour
 {
     [SerializeField] protected RectTransform canvasRectTransform;
     [SerializeField] protected GameObject canvasObject;
@@ -18,22 +18,10 @@ public class CanvasBounce : MonoBehaviour
     protected bool isFalling = false;
     protected bool isBouncingComplete = true;
 
-    private Joycon leftJoycon;
-    private Joycon rightJoycon;
-
     [SerializeField] CountdownText countdown;
+
     protected virtual void Start()
     {
-        // Joy-Conの初期化
-        var joycons = JoyconManager.Instance.j;
-        if (joycons == null) return;
-
-        if (joycons.Count >= 2)
-        {
-            leftJoycon = joycons.Find(c => c.isLeft);
-            rightJoycon = joycons.Find(c => !c.isLeft);
-        }
-
         if (dropOnStart)
         {
             InitializeCanvasPosition();
@@ -61,9 +49,8 @@ public class CanvasBounce : MonoBehaviour
             Debug.Log("キャンバスが落下します");
         }
 
-        // Lボタンでキャンバスを上昇させる
-        if (leftJoycon != null && 
-            (leftJoycon.GetButtonDown(Joycon.Button.DPAD_DOWN)) && !isFalling && isBouncingComplete)
+        // Qキーでキャンバスを上昇させる
+        if (Input.GetKeyDown(KeyCode.Q) && !isFalling && isBouncingComplete)
         {
             RiseCanvas();
 
@@ -79,7 +66,8 @@ public class CanvasBounce : MonoBehaviour
             Debug.Log("キャンバスが上昇します");
         }
 
-        if (leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_LEFT) && dropOnStart)
+        // 左矢印キーでメニューに戻る
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && dropOnStart)
         {
             ScenesLoader.Instance.LoadStartMenu();
             Debug.Log("スタート画面に戻ります");
