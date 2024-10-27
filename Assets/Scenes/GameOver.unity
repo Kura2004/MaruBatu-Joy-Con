@@ -1165,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599997307177045747, guid: dc73ad359f6b31c46baef4be653baa37, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9945219
       objectReference: {fileID: 0}
     - target: {fileID: 1599997307177045747, guid: dc73ad359f6b31c46baef4be653baa37, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1177,7 +1177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599997307177045747, guid: dc73ad359f6b31c46baef4be653baa37, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.10452837
       objectReference: {fileID: 0}
     - target: {fileID: 1599997307177045747, guid: dc73ad359f6b31c46baef4be653baa37, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1197,7 +1197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599997307177045747, guid: dc73ad359f6b31c46baef4be653baa37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 5623091408203914739, guid: dc73ad359f6b31c46baef4be653baa37, type: 3}
       propertyPath: m_Sprite
@@ -1249,14 +1249,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 919415528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba29f5f3d2f7db4b9c2d1ae0bb86573, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f6de42fe1e2a8643974fa2f99f8e2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationAxis: {x: 0, y: 0, z: -1}
-  rotationAngle: 1.5
+  rotationAxis: {x: 0, y: 0, z: 1}
+  rotationAngles:
+  - 0
+  - 10
+  - -10
+  - 0
+  - -10
+  - 10
   duration: 1
   easing: 4
-  delayBetweenLoops: 3
+  delayBetweenLoops: 2.1
 --- !u!1 &938396259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,19 +2063,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407969678748786263, guid: 569d2fba9dc06144d83431ca43dab542, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 8407969678748786263, guid: 569d2fba9dc06144d83431ca43dab542, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8407969678748786263, guid: 569d2fba9dc06144d83431ca43dab542, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8407969678748786263, guid: 569d2fba9dc06144d83431ca43dab542, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 8407969678748786263, guid: 569d2fba9dc06144d83431ca43dab542, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2089,7 +2095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407969678748786263, guid: 569d2fba9dc06144d83431ca43dab542, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2129,14 +2135,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692369600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba29f5f3d2f7db4b9c2d1ae0bb86573, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f6de42fe1e2a8643974fa2f99f8e2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationAxis: {x: 0, y: 0, z: 1}
-  rotationAngle: 1.5
+  rotationAxis: {x: 0, y: 0, z: -1}
+  rotationAngles:
+  - 0
+  - 10
+  - -10
+  - 0
+  - -10
+  - 10
   duration: 1
   easing: 4
-  delayBetweenLoops: 3
+  delayBetweenLoops: 2.1
 --- !u!1001 &1837974319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2145,6 +2157,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1481137112}
     m_Modifications:
+    - target: {fileID: 1291385652018742093, guid: e28b6f78e39614f498cb61849c2bf141, type: 3}
+      propertyPath: delayBetweenLoops
+      value: 2.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1853079808723454933, guid: e28b6f78e39614f498cb61849c2bf141, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2804,7 +2820,7 @@ MonoBehaviour:
   rotationAngle: 1.5
   duration: 1
   easing: 4
-  delayBetweenLoops: 3
+  delayBetweenLoops: 2.1
 --- !u!1 &6835702717949131
 GameObject:
   m_ObjectHideFlags: 0
