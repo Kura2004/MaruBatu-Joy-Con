@@ -54,7 +54,7 @@ public class ObjectScaler : MonoBehaviour
     }
 
     // オブジェクトのサイズを大きくするメソッド
-    private void EnlargeObject()
+    public void EnlargeObject()
     {
         // 現在のアニメーションを停止
         if (scaleTween != null && scaleTween.IsPlaying())
@@ -66,7 +66,7 @@ public class ObjectScaler : MonoBehaviour
     }
 
     // オブジェクトのサイズを徐々に元に戻すメソッド
-    private void ResetObjectSize()
+    public void ResetObjectSize()
     {
         // 現在のアニメーションを停止
         if (scaleTween != null && scaleTween.IsPlaying())
@@ -93,6 +93,7 @@ public class ObjectScaler : MonoBehaviour
     // 入力を処理できるかどうかを判定するメソッド
     private bool CanProcessInput()
     {
-        return !GameStateManager.Instance.IsRotating;
+        return !GameStateManager.Instance.IsRotating &&
+            GameStateManager.Instance.IsBoardSetupComplete;
     }
 }

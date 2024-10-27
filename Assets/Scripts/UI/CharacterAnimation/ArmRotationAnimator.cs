@@ -8,10 +8,6 @@ public class ArmRotationAnimator : MonoBehaviour
     [SerializeField] private float duration = 1f;        // 補完時間 (秒)
     [SerializeField] private Ease easeType = Ease.Linear; // イージングタイプ
 
-    private void Start()
-    {
-
-    }
 
     // Z軸の回転を設定したベクトルの長さをn秒で補完的に変化させるメソッド
     public void RotateZAxis(bool isPositive)

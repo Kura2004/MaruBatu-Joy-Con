@@ -73,6 +73,7 @@ public class ObjectColorChanger : MonoBehaviour
     private bool ShouldChangeColorOnTrigger()
     {
         return !GameStateManager.Instance.IsRotating
-            && !isChanging;
+            && GameStateManager.Instance.IsBoardSetupComplete &&
+            !isChanging;
     }
 }

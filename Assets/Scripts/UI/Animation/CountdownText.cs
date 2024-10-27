@@ -64,6 +64,7 @@ public class CountdownText : MonoBehaviour
         }
         AnimateFade(endAlpha, 0.3f);
 
+
     }
 
     // インデックスに応じた処理を実行
@@ -102,6 +103,7 @@ public class CountdownText : MonoBehaviour
                 AnimateFade(initialAlpha, duration);
                 animator[0].ChangeSpritesColorToWhite();
                 animator[1].ChangeSpritesColor(Color.gray, 0.8f);
+                ObjectStateManager.Instance.MoveFirstObjectUpDown(true);
                 break;
 
             default:

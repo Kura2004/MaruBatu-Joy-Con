@@ -22,7 +22,7 @@ public class CanvasBounce : MonoBehaviour
     private Joycon rightJoycon;
 
     [SerializeField] CountdownText countdown;
-    protected virtual void Start()
+    void Start()
     {
         // Joy-Conの初期化
         var joycons = JoyconManager.Instance.j;
@@ -54,7 +54,7 @@ public class CanvasBounce : MonoBehaviour
         canvasRectTransform.localPosition = setPos;
     }
 
-    protected virtual void Update()
+    void Update()
     {
         if (ShouldDropCanvas())
         {
@@ -86,18 +86,18 @@ public class CanvasBounce : MonoBehaviour
         }
     }
 
-    protected virtual bool ShouldDropCanvas()
+    bool ShouldDropCanvas()
     {
         return false;
     }
 
-    protected void InitializeDrop()
+    void InitializeDrop()
     {
         isFalling = true;
         isBouncingComplete = false; // バウンドアニメーションのフラグをリセット
     }
 
-    protected virtual void DropCanvas()
+    void DropCanvas()
     {
         InitializeDrop();
 
@@ -113,7 +113,7 @@ public class CanvasBounce : MonoBehaviour
         canvasRectTransform.DOAnchorPosY(groundY, initialBounceDuration).SetEase(Ease.InQuad).OnComplete(Bounce);
     }
 
-    protected virtual void Bounce()
+    void Bounce()
     {
         float currentBounceHeight = bounceHeight;
         float currentBounceDuration = initialBounceDuration;
@@ -142,7 +142,7 @@ public class CanvasBounce : MonoBehaviour
         sequence.Play();
     }
 
-    protected virtual void RiseCanvas()
+    void RiseCanvas()
     {
         if (!isFalling)
         {
