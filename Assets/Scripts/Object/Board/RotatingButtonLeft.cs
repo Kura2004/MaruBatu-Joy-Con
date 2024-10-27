@@ -32,11 +32,31 @@ public class RotatingButtonLeft : MonoBehaviour
         return !GameStateManager.Instance.IsBoardSetupComplete;
     }
 
-    private void OnTriggerStay(Collider other)
+    private bool isWithinTrigger = false;  // タグに当たっているかどうかを表すフラグ
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (IsInteractionBlocked() || !other.CompareTag(selecterTag))
+        // タグが一致するオブジェクトに当たった場合
+        if (other.CompareTag(selecterTag))
         {
-            return;
+            isWithinTrigger = true;  // 当たった時にフラグをtrueに
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // タグが一致するオブジェクトから離れた場合
+        if (other.CompareTag(selecterTag))
+        {
+            isWithinTrigger = false;  // 離れた時にフラグをfalseに
+        }
+    }
+
+    private void Update()
+    {
+        if (IsInteractionBlocked() || !isWithinTrigger)
+        {
+            return;  // インタラクションがブロックされているか、タグに当たっていない場合は処理を中断
         }
 
         // 2PのSLボタンで回転
@@ -58,8 +78,8 @@ public class RotatingButtonLeft : MonoBehaviour
         {
             HandleClickInteraction();
         }
-
     }
+
 
     private void HandleClickInteraction()
     {

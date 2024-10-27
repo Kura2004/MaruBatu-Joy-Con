@@ -71,7 +71,7 @@ public class MassColorChecker : MonoBehaviour
                 Renderer renderer = obj.GetComponent<Renderer>();
 
                 if (renderer != null && renderer.material.color == colorToCheck
-                    && obj.GetComponent<MouseInteractionWithTurnManager>().isClicked)
+                    && obj.GetComponent<JoyConInteractionWithTurnManager>().isClicked)
                 {
                     count++;
                 }

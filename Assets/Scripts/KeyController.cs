@@ -4,10 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class KeyController : MonoBehaviour
 {
-    private void Start()
-    {
-
-    }
     private void Update()
     {
         // ESCキーが押されたらアプリケーションを終了

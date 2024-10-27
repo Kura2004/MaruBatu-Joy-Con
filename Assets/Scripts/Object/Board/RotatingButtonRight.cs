@@ -15,8 +15,6 @@ public class RotatingButtonRight : MonoBehaviour
 
     private void Start()
     {
-
-        // Joy-Conの初期化
         joycons = JoyconManager.Instance.j;
         if (joycons.Count >= 1)
         {
@@ -30,28 +28,43 @@ public class RotatingButtonRight : MonoBehaviour
         return !GameStateManager.Instance.IsBoardSetupComplete;
     }
 
-    private void OnTriggerStay(Collider other)
+    private bool isWithinTrigger = false;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (IsInteractionBlocked() || !other.CompareTag(selecterTag))
+        if (other.CompareTag(selecterTag))
+        {
+            isWithinTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(selecterTag))
+        {
+            isWithinTrigger = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (IsInteractionBlocked() || !isWithinTrigger)
         {
             return;
         }
 
-        // 2PのSRボタンで回転
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) &&
             rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.SR))
         {
             HandleClickInteraction();
         }
 
-        // 1PのSRボタンで回転
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) &&
             leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.SR))
         {
             HandleClickInteraction();
         }
 
-        // テスト用
         if (Input.GetKeyDown(KeyCode.Z))
         {
             HandleClickInteraction();
@@ -60,8 +73,7 @@ public class RotatingButtonRight : MonoBehaviour
 
     private void HandleClickInteraction()
     {
-        if (!rotatingManager.AnyMassClicked() ||
-               !rotatingManager.isSelected)
+        if (!rotatingManager.AnyMassClicked() || !rotatingManager.isSelected)
         {
             ScenesAudio.BlockedSe();
             return;

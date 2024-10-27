@@ -50,22 +50,12 @@ public class JoyconInputMover : MonoBehaviour
         }
     }
 
-    [SerializeField] bool onDebug = false;
-
     private void Handle1PInput()
     {
         if (leftJoycon == null) return;
 
         // 左Joy-Conのスティック入力を取得
         Vector2 stickInput = new Vector2(-leftJoycon.GetStick()[1], leftJoycon.GetStick()[0]);
-
-#if UNITY_EDITOR
-        if (onDebug)
-        {
-            stickInput.x = Input.GetAxis("Horizontal");
-            stickInput.y = Input.GetAxis("Vertical");
-        }
-#endif
 
         if (Mathf.Abs(stickInput.x) < 0.1f) stickInput.x = 0;
         if (Mathf.Abs(stickInput.y) < 0.1f) stickInput.y = 0;
@@ -90,14 +80,6 @@ public class JoyconInputMover : MonoBehaviour
 
         // 右Joy-Conのスティック入力を取得
         Vector2 stickInput = new Vector2(rightJoycon.GetStick()[1], -rightJoycon.GetStick()[0]);
-
-#if UNITY_EDITOR
-        if (onDebug)
-        {
-            stickInput.x = Input.GetAxis("Horizontal");
-            stickInput.y = Input.GetAxis("Vertical");
-        }
-#endif
 
         if (Mathf.Abs(stickInput.x) < 0.1f) stickInput.x = 0;
         if (Mathf.Abs(stickInput.y) < 0.1f) stickInput.y = 0;
