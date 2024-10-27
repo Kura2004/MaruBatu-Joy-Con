@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MainGameOverManager : MonoBehaviour
@@ -6,12 +7,24 @@ public class MainGameOverManager : MonoBehaviour
     public static bool loadGameOver = false;
     int GameEndCounter = 0;
     [SerializeField] CanvasFader[] fadeUI;
+    private List<Joycon> joycons; // JoyConのリスト
+    private Joycon joyconL; // 左JoyConのインスタンス
+    private Joycon joyconR;
+
 
     private void OnEnable()
     {
         GameEndCounter = 0;
         loadGameOver = false;
-        //Invoke(nameof(ExecuteOpponentWin), 7.0f);
+        // Joy-Conの初期化
+        joycons = JoyconManager.Instance.j;
+        if (joycons.Count >= 1)
+        {
+            joyconL = joycons.Find(c => c.isLeft);
+            joyconR = joycons.Find(c => !c.isLeft);
+        }
+
+        //Invoke(nameof(ExecutePlayerWin), 7.0f);
     }
 
     private void ExecutePlayerWin()
@@ -36,7 +49,6 @@ public class MainGameOverManager : MonoBehaviour
         ExecuteGameOver();
     }
 
-    // ゲームオーバーを実行するメソッド
     private void ExecuteGameOver()
     {
         loadGameOver = true;
@@ -45,8 +57,18 @@ public class MainGameOverManager : MonoBehaviour
         GameStateManager.Instance.ResetBoardSetup();
         TimeLimitController.Instance.ResetEffect();
         TimeLimitController.Instance.StopTimer();
-        //ScenesAudio.WinSe();
+
+        // 振動処理を0.1秒後に実行
+        Invoke(nameof(TriggerJoyconRumble), 0.1f);
+        // ScenesAudio.WinSe();
     }
+
+    private void TriggerJoyconRumble()
+    {
+        joyconL.SetRumble(160, 320, 10, 3500);
+        joyconR.SetRumble(160, 320, 10, 3500);
+    }
+
 
     // プレイヤーと相手の状態を確認してゲームオーバーを管理
     private void Update()

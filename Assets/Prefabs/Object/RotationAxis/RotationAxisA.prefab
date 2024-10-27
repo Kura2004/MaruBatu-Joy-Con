@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 3278937255185800091}
   - component: {fileID: 166579771922265274}
   - component: {fileID: 2755204868025747258}
-  - component: {fileID: 1683480176511869666}
   - component: {fileID: 9179281462099799516}
   - component: {fileID: 7500896687921579262}
-  - component: {fileID: 4636794437398960508}
   - component: {fileID: 5433512149844213882}
   m_Layer: 0
   m_Name: LeftRotation
@@ -106,18 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingManager: {fileID: 4250345493248960212}
   selecterTag: ButtonSelecter
---- !u!114 &1683480176511869666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593976026201341192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d4ef104006bf64baed9bea25b22eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  rumbleDuration: 50
+  rumbleAmp: 10
 --- !u!114 &9179281462099799516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,21 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalRotationSpeed: 20
   rotationAxis: 2
---- !u!114 &4636794437398960508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593976026201341192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59be650939232d242ac27267fdf85db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementDistance: {x: -0.01, y: 0, z: 0}
-  moveDuration: 2
-  easeType: 1
 --- !u!65 &5433512149844213882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -298,6 +271,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingManager: {fileID: 4250345493248960212}
   selecterTag: ButtonSelecter
+  rumbleDuration: 50
+  rumbleAmp: 10
 --- !u!114 &5790789292583691859
 MonoBehaviour:
   m_ObjectHideFlags: 0
