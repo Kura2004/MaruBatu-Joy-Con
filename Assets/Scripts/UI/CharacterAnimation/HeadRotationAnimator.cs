@@ -1,32 +1,45 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 
 public class HeadRotationAnimator : MonoBehaviour
 {
-    [SerializeField] private RectTransform headRectTransform;
-    [SerializeField] private float headRotationAngle = 90f;  // 回転する角度
-    [SerializeField] private float headRotationDuration = 1f;  // 補完時間 (秒)
-    [SerializeField] private Ease headEaseType = Ease.Linear;  // イージングタイプ
+    private RectTransform rectTransform;
 
-    // Z軸の回転を設定したベクトルの長さをn秒で補完的に変化させるメソッド
-    public void RotateHeadZAxis(bool isPositive)
+    // インスペクターで設定可能なパラメータ
+    [Header("Rotation Settings")]
+    [SerializeField] private Vector3 rotationAxis = Vector3.up;  // 回転軸
+    [SerializeField] private float[] rotationAngles;
+    [SerializeField] private float duration = 1f;                // 補完時間
+    [SerializeField] private Ease easing = Ease.InOutSine;       // イージング
+    [SerializeField] private float delayBetweenLoops = 0.5f;     // 待機時間
+
+    private void Awake()
     {
-        float targetAngle = isPositive ? headRotationAngle : -headRotationAngle;
-
-        // 現在の回転角度を取得し、Z軸のみを設定
-        Vector3 currentRotation = headRectTransform.localEulerAngles;
-        float newZRotation = currentRotation.z + targetAngle;
-
-        // Z軸の回転を補完的に変化
-        headRectTransform.DOLocalRotate(new Vector3(0, 0, newZRotation), headRotationDuration)
-            .SetEase(headEaseType);
+        rectTransform = GetComponent<RectTransform>();
     }
 
-    // 回転を反転させるメソッド
-    public void ToggleHeadRotationDirection()
+    private void Start()
     {
-        // 現在の回転方向を判定し、反転させて回転
-        bool isCurrentlyPositive = headRectTransform.localEulerAngles.z % 360 < 180;
-        RotateHeadZAxis(!isCurrentlyPositive);
+        StartCoroutine(Rotate());
+    }
+
+    private IEnumerator Rotate()
+    {
+        while (true)
+        {
+            for (int i = 0; i < rotationAngles.Length; i++)
+            {
+                // ターゲット回転を計算
+                Vector3 targetRotation = rectTransform.localEulerAngles + rotationAxis * rotationAngles[i];
+
+                // 回転アニメーションを実行
+                rectTransform.DOLocalRotate(targetRotation, duration, RotateMode.FastBeyond360)
+                             .SetEase(easing);
+
+                // 回転が終わるまで待機
+                yield return new WaitForSeconds(duration + delayBetweenLoops);
+            }
+        }
     }
 }
