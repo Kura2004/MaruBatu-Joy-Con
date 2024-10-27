@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using System;
 
 public class RotatingMassObjectManager : MonoBehaviour
 {
@@ -70,17 +71,17 @@ public class RotatingMassObjectManager : MonoBehaviour
         }
     }
 
-    public void StartRotationLeft()
+    public void StartRotationLeft(Action onComplete = null)
     {
-        StartCoroutine(RotateObject(-rotationDegrees));
+        StartCoroutine(RotateObject(-rotationDegrees, onComplete));
     }
 
-    public void StartRotationRight()
+    public void StartRotationRight(Action onComplete = null)
     {
-        StartCoroutine(RotateObject(rotationDegrees));
+        StartCoroutine(RotateObject(rotationDegrees, onComplete));
     }
 
-    private IEnumerator RotateObject(float degrees)
+    private IEnumerator RotateObject(float degrees, Action onComplete = null)
     {
         if (GameStateManager.Instance.IsRotating) yield break;
 
@@ -108,11 +109,8 @@ public class RotatingMassObjectManager : MonoBehaviour
 
         ResetParentRelationships();
         OnRotationComplete();
+        onComplete?.Invoke();
     }
-
-    // オブジェクトの位置を更新するメソッドは不要になるので削除
-
-    // MakeObjectsChildren, ResetParentRelationships, OnRotationComplete メソッドはそのまま使用
 
     private void MakeObjectsChildren()
     {

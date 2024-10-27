@@ -83,6 +83,8 @@ IsInteractionBlocked()) return;
         }
     }
 
+    [SerializeField] private int rumbleDuration = 0;
+    [SerializeField] private float rumbleAmp = 0;
     private void Update()
     {
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) ||
@@ -94,12 +96,14 @@ IsInteractionBlocked()) return;
             if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentPlacePiece) &&
                 rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.DPAD_UP))
             {
+                rightJoycon.SetRumble(160, 320, rumbleAmp, rumbleDuration);
                 HandleInteraction();
             }
 
             if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerPlacePiece) &&
                 leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.DPAD_DOWN))
             {
+                leftJoycon.SetRumble(160, 320, rumbleAmp, rumbleDuration);
                 HandleInteraction();
             }
         }

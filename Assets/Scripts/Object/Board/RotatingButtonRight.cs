@@ -56,22 +56,22 @@ public class RotatingButtonRight : MonoBehaviour
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) &&
             rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.SR))
         {
-            HandleClickInteraction();
+            HandleClickInteraction(false);
         }
 
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) &&
             leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.SR))
         {
-            HandleClickInteraction();
+            HandleClickInteraction(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            HandleClickInteraction();
+            HandleClickInteraction(false);
         }
     }
 
-    private void HandleClickInteraction()
+    private void HandleClickInteraction(bool isLeft)
     {
         if (!rotatingManager.AnyMassClicked() || !rotatingManager.isSelected)
         {
@@ -80,6 +80,10 @@ public class RotatingButtonRight : MonoBehaviour
         }
 
         TimeLimitController.Instance.StopTimer();
-        rotatingManager.StartRotationRight();
+        rotatingManager.StartRotationRight(() => {
+
+            if (isLeft) leftJoycon.SetRumble(160, 320, 10, 100);
+            else rightJoycon.SetRumble(160, 320, 10, 100);
+        });
     }
 }

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -63,25 +64,25 @@ public class RotatingButtonLeft : MonoBehaviour
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) &&
             rightJoycon != null && rightJoycon.GetButtonDown(Joycon.Button.SL))
         {
-            HandleClickInteraction();
+            HandleClickInteraction(false);
         }
 
         // 1PのSLボタンで回転
         if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) &&
             leftJoycon != null && leftJoycon.GetButtonDown(Joycon.Button.SL))
         {
-            HandleClickInteraction();
+            HandleClickInteraction(true);
         }
 
         // テスト用
         if (Input.GetKeyDown(KeyCode.X))
         {
-            HandleClickInteraction();
+            HandleClickInteraction(false);
         }
     }
 
 
-    private void HandleClickInteraction()
+    private void HandleClickInteraction(bool isLeft)
     {
         if (!rotatingManager.AnyMassClicked() ||
                !rotatingManager.isSelected)
@@ -91,6 +92,12 @@ public class RotatingButtonLeft : MonoBehaviour
         }
 
         TimeLimitController.Instance.StopTimer();
-        rotatingManager.StartRotationLeft();
+        rotatingManager.StartRotationLeft(() => {
+
+            if (isLeft) leftJoycon.SetRumble(160, 320, 10, 100);
+            else rightJoycon.SetRumble(160, 320, 10, 100);
+
+            Debug.Log("Left rotation completed.");
+        });
     }
 }
