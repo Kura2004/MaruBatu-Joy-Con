@@ -1,11 +1,14 @@
 using UnityEngine;
 using TMPro; // TextMeshProを使用するための名前空間
+using UnityEngine.UI;
 using System.Collections;
 
 public class TimeLimitAdjuster : MonoBehaviour
 {
     [SerializeField] private TMP_Text valueDisplay;   // TextMeshProを使用するテキスト
     [SerializeField] private float cooldownDuration = 1f; // クールダウン時間
+    [SerializeField] private Image Arrow_Up;
+    [SerializeField] private Image Arrow_Down;
 
     public static int timeLimit = 30; // 調整するゲームの制限時間
     private bool canAdjustTime = true;   // タイム調整を受け付けるかどうか
@@ -32,6 +35,9 @@ public class TimeLimitAdjuster : MonoBehaviour
     {
         // 初期値を表示
         UpdateValueDisplay();
+
+        Arrow_Up.enabled = true;
+        Arrow_Down.enabled = true;
 
         // Joy-Conの初期化
         var joycons = JoyconManager.Instance.j;
@@ -83,6 +89,8 @@ public class TimeLimitAdjuster : MonoBehaviour
         }
 
         UpdateValueDisplay();
+        EraseArrow();
+        Show_Arrow();
 
         // タイム調整を一定時間無効にする
         StartCoroutine(DisableTimeAdjustmentTemporarily());
@@ -95,6 +103,28 @@ public class TimeLimitAdjuster : MonoBehaviour
         if (timeLimit > 40)
         {
             valueDisplay.text = Mathf.Infinity.ToString();
+            Arrow_Up.enabled = false;
+        }
+    }
+
+    private void EraseArrow()
+    {
+        if (timeLimit == 20)
+        {
+            Arrow_Down.enabled = false;
+        }
+    }
+
+    private void Show_Arrow()
+    {
+        if (timeLimit <= 40)
+        {
+            Arrow_Up.enabled = true;
+        }
+
+        if (timeLimit >= 30)
+        {
+            Arrow_Down.enabled = true;
         }
     }
 
