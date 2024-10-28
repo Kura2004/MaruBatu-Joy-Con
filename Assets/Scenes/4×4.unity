@@ -10209,8 +10209,6 @@ GameObject:
   - component: {fileID: 4689660336963294369}
   - component: {fileID: 5812931577591961358}
   - component: {fileID: 8114575477531408689}
-  - component: {fileID: 8114575477531408690}
-  - component: {fileID: 8114575477531408692}
   - component: {fileID: 8114575477531408691}
   m_Layer: 0
   m_Name: "4\xD74Board"
@@ -10273,18 +10271,6 @@ MonoBehaviour:
   prefab: {fileID: 770763829274680468, guid: 7fa59b4c06e3cdb4fb70f7e93b2a3dd8, type: 3}
   zSpacing: 5
   objectCount: 4
---- !u!114 &8114575477531408690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6788832715504390381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00feccf33e483144098a20c2ba1ddb91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8114575477531408691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10303,18 +10289,6 @@ MonoBehaviour:
   moveDistance: 500
   firstObject: {fileID: 1161477312}
   secondObject: {fileID: 2074521303}
---- !u!114 &8114575477531408692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6788832715504390381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00feccf33e483144098a20c2ba1ddb91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8306814092224898591 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2065508853911292498, guid: a08d52a6f8b9b1c4f83df02a85894676, type: 3}

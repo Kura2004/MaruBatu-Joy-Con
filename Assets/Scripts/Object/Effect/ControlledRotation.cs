@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ControlledRotationBySpeedToggle : MonoBehaviour
+public class ControlledRotation : MonoBehaviour
 {
     public enum RotationAxis
     {

@@ -104,8 +104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingManager: {fileID: 4250345493248960212}
   selecterTag: ButtonSelecter
-  rumbleDuration: 50
-  rumbleAmp: 10
 --- !u!114 &9179281462099799516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +175,6 @@ GameObject:
   - component: {fileID: 2503668836438881667}
   - component: {fileID: 6264736193563978896}
   - component: {fileID: 7442033208943567216}
-  - component: {fileID: 5790789292583691859}
   - component: {fileID: 8851157660237452206}
   - component: {fileID: 6370016804988963457}
   - component: {fileID: 6457723381952544829}
@@ -271,20 +268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatingManager: {fileID: 4250345493248960212}
   selecterTag: ButtonSelecter
-  rumbleDuration: 50
-  rumbleAmp: 10
---- !u!114 &5790789292583691859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2953546947597068712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d4ef104006bf64baed9bea25b22eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8851157660237452206
 MonoBehaviour:
   m_ObjectHideFlags: 0
