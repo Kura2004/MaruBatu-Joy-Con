@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 166579771922265274}
   - component: {fileID: 2755204868025747258}
   - component: {fileID: 9179281462099799516}
-  - component: {fileID: 7500896687921579262}
   - component: {fileID: 5433512149844213882}
+  - component: {fileID: 2692455105508113704}
   m_Layer: 0
   m_Name: LeftRotation
   m_TagString: Back
@@ -129,20 +129,6 @@ MonoBehaviour:
   orangeColor: {r: 1, g: 0.5, b: 0, a: 1}
   rotating: {fileID: 4250345493248960212}
   setRed: 1
---- !u!114 &7500896687921579262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593976026201341192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78741f6b219a10f4286d0e995e47d0d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalRotationSpeed: 20
-  rotationAxis: 2
 --- !u!65 &5433512149844213882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -164,6 +150,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.8, y: 12.800003, z: 0.20000005}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2692455105508113704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593976026201341192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4391f835ff99643be1903c43eae70a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalRotationSpeed: 20
+  rotationAxis: 2
 --- !u!1 &2953546947597068712
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,8 +176,8 @@ GameObject:
   - component: {fileID: 6264736193563978896}
   - component: {fileID: 7442033208943567216}
   - component: {fileID: 8851157660237452206}
-  - component: {fileID: 6370016804988963457}
   - component: {fileID: 6457723381952544829}
+  - component: {fileID: 4147407952060086982}
   m_Layer: 0
   m_Name: RightRotation
   m_TagString: Back
@@ -293,20 +293,6 @@ MonoBehaviour:
   orangeColor: {r: 1, g: 0.5, b: 0, a: 1}
   rotating: {fileID: 4250345493248960212}
   setRed: 0
---- !u!114 &6370016804988963457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2953546947597068712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78741f6b219a10f4286d0e995e47d0d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalRotationSpeed: -20
-  rotationAxis: 2
 --- !u!65 &6457723381952544829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -328,6 +314,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.8, y: 12.800003, z: 0.20000005}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4147407952060086982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953546947597068712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4391f835ff99643be1903c43eae70a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalRotationSpeed: -20
+  rotationAxis: 2
 --- !u!1 &3384603433885392565
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +595,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: B
+  m_text: 'B
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d70bafd705138c049855bca8b7153826, type: 2}
   m_sharedMaterial: {fileID: -7784023433475618575, guid: d70bafd705138c049855bca8b7153826, type: 2}
