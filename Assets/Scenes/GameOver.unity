@@ -3003,7 +3003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3817612662674768117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,6 +3093,8 @@ MonoBehaviour:
     tag: Retry
   - button: {fileID: 1892152303}
     tag: Title
+  - button: {fileID: 5317361203806224997}
+    tag: Quit
   isLocked: 0
   onGuide: 0
   specialTag: 
@@ -3119,6 +3121,8 @@ MonoBehaviour:
     tag: Retry
   - index: 1
     tag: Title
+  - index: 2
+    tag: Quit
   volume: {fileID: 0}
 --- !u!224 &4988618018700358896
 RectTransform:
