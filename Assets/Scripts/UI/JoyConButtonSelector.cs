@@ -74,7 +74,7 @@ public class JoyConButtonSelector : MonoBehaviour
 
     private void Update()
     {
-        if(buttonManager.onGuide&& joyconL.GetButtonDown(Joycon.Button.DPAD_LEFT))
+        if (buttonManager.onGuide && joyconL.GetButtonDown(Joycon.Button.DPAD_LEFT))
         {
             if (currentIndex >= 0 && currentIndex < buttonList.Count && buttonList[currentIndex] != null)
             {
