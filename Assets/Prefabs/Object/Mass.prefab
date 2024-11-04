@@ -186,7 +186,7 @@ MonoBehaviour:
   colorChanger: {fileID: 5706279723003351727}
   frame: {fileID: 2059876551440379256}
   frameScaler: {fileID: 5795383731723361215}
-  rumbleDuration: 50
+  rumbleDuration: 30
   rumbleAmp: 10
 --- !u!1 &4752535685841456287
 GameObject:
