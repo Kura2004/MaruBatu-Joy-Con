@@ -87,8 +87,7 @@ IsInteractionBlocked()) return;
     [SerializeField] private float rumbleAmp = 0;
     private void Update()
     {
-        if (GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.OpponentRotateGroup) ||
-    GameTurnManager.Instance.IsCurrentTurn(GameTurnManager.TurnState.PlayerRotateGroup) ||
+        if (!GameStateManager.Instance.IsBoardSetupComplete ||
     GameTurnManager.Instance.IsTurnChanging) return;
 
         if (isWithinTrigger)

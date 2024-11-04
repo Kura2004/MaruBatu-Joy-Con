@@ -94,8 +94,8 @@ public class RotatingButtonLeft : MonoBehaviour
         TimeLimitController.Instance.StopTimer();
         rotatingManager.StartRotationLeft(() => {
 
-            if (isLeft) leftJoycon.SetRumble(160, 320, 10, 100);
-            else rightJoycon.SetRumble(160, 320, 10, 100);
+            if (isLeft) leftJoycon.SetRumble(160, 320, 10, 50);
+            else rightJoycon.SetRumble(160, 320, 10, 50);
 
             Debug.Log("Left rotation completed.");
         });
