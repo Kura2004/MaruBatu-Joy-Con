@@ -24,7 +24,7 @@ public class MainGameOverManager : MonoBehaviour
             joyconR = joycons.Find(c => !c.isLeft);
         }
 
-        //Invoke(nameof(ExecuteDraw), 7.0f);
+        //Invoke(nameof(ExecutePlayerWin), 7.0f);
     }
 
     private void ExecutePlayerWin()
@@ -33,7 +33,7 @@ public class MainGameOverManager : MonoBehaviour
         VictoryCameraAnimator.Instance.MoveCameraLeftToResetVictory();
         GameWinnerManager.Instance.SetWinner(GameWinnerManager.Winner.Player1);
         ExecuteGameOver();
-        Invoke(nameof(TriggerJoyconRumble), 0.1f);
+        Invoke(nameof(TriggerJoyconRumbleLeft), 0.2f);
     }
 
     private void ExecuteOpponentWin()
@@ -42,7 +42,7 @@ public class MainGameOverManager : MonoBehaviour
         VictoryCameraAnimator.Instance.MoveCameraRightForVictory();
         GameWinnerManager.Instance.SetWinner(GameWinnerManager.Winner.Player2);
         ExecuteGameOver();
-        Invoke(nameof(TriggerJoyconRumble), 0.1f);
+        Invoke(nameof(TriggerJoyconRumbleRight), 0.2f);
     }
 
     private void ExecuteDraw()
@@ -62,9 +62,13 @@ public class MainGameOverManager : MonoBehaviour
         // ScenesAudio.WinSe();
     }
 
-    private void TriggerJoyconRumble()
+    private void TriggerJoyconRumbleLeft()
     {
         joyconL.SetRumble(160, 320, 10, 3500);
+    }
+
+    private void TriggerJoyconRumbleRight()
+    {
         joyconR.SetRumble(160, 320, 10, 3500);
     }
 
