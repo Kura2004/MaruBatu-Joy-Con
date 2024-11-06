@@ -97,14 +97,10 @@ namespace Saito.SoundManager
             {
                 var se = kvp.Key;
                 var audioSource = kvp.Value;
-
-                if (se != null)
+                SeSoundData data = seSoundDatas.Find(d => d.se == se);
+                if (data != null)
                 {
-                    SeSoundData data = seSoundDatas.Find(d => d.se == se);
-                    if (data != null)
-                    {
-                        audioSource.volume = Mathf.Clamp(data.volume * seMasterVolume * masterVolume, 0.0f, 1.0f);
-                    }
+                    audioSource.volume = Mathf.Clamp(data.volume * seMasterVolume * masterVolume, 0.0f, 1.0f);
                 }
             }
         }

@@ -67,7 +67,7 @@ public class DebugButtonSelector : MonoBehaviour
             StartCooldown(); // クールダウン開始
         }
 
-        if (!canInput || buttonManager == null || buttonManager.onGuide) return;
+        if (!canInput || buttonManager == null) return;
 
         // HorizontalとVerticalの入力を取得
         float horizontalInput = Input.GetAxis("Horizontal");

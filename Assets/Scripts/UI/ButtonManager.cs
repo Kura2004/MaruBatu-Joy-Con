@@ -21,8 +21,6 @@ public class ButtonManager : MonoBehaviour
     // ボタンがロックされているかどうかを管理するフラグ
     public bool isLocked = false;
 
-    public bool onGuide = false;
-
     [SerializeField] string specialTag;
 
     void Start()
@@ -36,8 +34,6 @@ public class ButtonManager : MonoBehaviour
                 buttonData.button.onClick.AddListener(() => OnButtonClicked(buttonData));
             }
         }
-
-        onGuide = false;
     }
 
     // ボタンがクリックされたときの処理
@@ -86,10 +82,5 @@ public class ButtonManager : MonoBehaviour
         {
             LockButtons(); // ボタンをロック
         }
-    }
-
-    public void ToggleGuide()
-    {
-        onGuide = !onGuide;
     }
 }

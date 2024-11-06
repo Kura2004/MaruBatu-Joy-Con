@@ -3,9 +3,6 @@ using DG.Tweening; // DOTweenを使うための名前空間
 
 public class ObjectStateManager : SingletonMonoBehaviour<ObjectStateManager>
 {
-    [SerializeField]
-    private float delayBeforeFinding = 1f; // タグでオブジェクトを探す前の遅延時間（秒）
-
     [Header("上下運動の設定")]
     [SerializeField] private float moveDuration = 2f;  // 移動にかかる時間
     [SerializeField] private float moveDistance = 2f;  // 移動する範囲の距離
